@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DatasetDialog</class>
+ <widget class="QDialog" name="DatasetDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>731</width>
+    <height>418</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>DatasetDialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_15">
+     <item>
+      <widget class="QGroupBox" name="grp_Numerical_Labeling">
+       <property name="title">
+        <string>アノテーションをCSVファイルとして保存する</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="lbl_Raw_Data_Dir">
+              <property name="text">
+               <string>Raw Data Dir</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lEdit_Raw_Data_Dir">
+              <property name="placeholderText">
+               <string>Raw Directory Path</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="tBtn_Raw_Data_Dir">
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="lbl_Csv_Data_Dir">
+              <property name="text">
+               <string>Csv Data Dir</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lEdit_Csv_Data_Dir">
+              <property name="placeholderText">
+               <string>Csv Directory Path</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="tBtn_Csv_Data_Dir">
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableWidget_Raw_Data_Dir">
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="lbl_Raw_Data_Count">
+              <property name="text">
+               <string>Count</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lEdit_Raw_Data_Count">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Count</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_Raw_Data_Label">
+              <property name="text">
+               <string>Label</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lEdit_Raw_Data_Label">
+              <property name="placeholderText">
+               <string>Label</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pBtn_Labeling">
+              <property name="text">
+               <string>Labeling</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lEdit_Valid_Raw_Data_Count">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Valid Count</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="grp_Split_Train">
+       <property name="title">
+        <string>手動分割(Target -&gt; A B)</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_Target_Directory_Path">
+            <property name="text">
+             <string>Target</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lEdit_Target_Directory_Path">
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Target Directory Path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="tBtn_Target_Directory_Path">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_A_Directory_Path">
+            <property name="text">
+             <string>A</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lEdit_A_Directory_Path">
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>A Directory Path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="tBtn_A_Directory_Path">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lbl_B_Directory_Path">
+            <property name="text">
+             <string>B</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="lEdit_B_Directory_Path">
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+            <property name="placeholderText">
+             <string>B Directory Path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QToolButton" name="tBtn_B_Directory_Path">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <widget class="QLabel" name="lbl_B_Percentage">
+            <property name="text">
+             <string>B %</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cBox_B_Percentage">
+            <property name="currentIndex">
+             <number>4</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>90%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>80%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>70%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>60%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>50%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>40%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>30%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>20%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>10%</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chBox_Manual_Shuffle">
+            <property name="text">
+             <string>Shuffle</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pBtn_Split_Target_To_A_B">
+            <property name="text">
+             <string>Split</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="lbl_Target_Num">
+            <property name="text">
+             <string>Target</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lEdit_Target_Num">
+            <property name="placeholderText">
+             <string>Count</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_A_Num">
+            <property name="text">
+             <string>A</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lEdit_A_Num">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Count</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_B_Num">
+            <property name="text">
+             <string>B</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lEdit_B_Num">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Count</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grp_Split_All">
+     <property name="title">
+      <string>自動分割(All -&gt; Train Validation Test)</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_13">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QLabel" name="lbl_All_Directory">
+            <property name="text">
+             <string>Select All Directories which are split to Train, Validation, Test</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tBtn_All_Directory">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_All_Directory">
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="lbl_Output_Directory">
+            <property name="text">
+             <string>Output</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lEdit_Output_Directory_Path">
+            <property name="placeholderText">
+             <string>Output Directory Path</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="tBtn_Output_Directory">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="lbl_Test_Percentage">
+            <property name="text">
+             <string>Test %</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cBox_Test_Percentage">
+            <property name="currentIndex">
+             <number>4</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>90%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>80%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>70%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>60%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>50%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>40%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>30%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>20%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>10%</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_Validation_Percentage">
+            <property name="text">
+             <string>Validation %</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cBox_Validation_Percentage">
+            <property name="currentIndex">
+             <number>4</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>90%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>80%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>70%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>60%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>50%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>40%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>30%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>20%</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>10%</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chBox_Auto_Shuffle">
+            <property name="text">
+             <string>Shuffle</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pBtn_Split_All_To_Train_Validation_Test">
+            <property name="text">
+             <string>Split</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_Train_Validation_Test">
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QComboBox" name="cBox_Dataset_Type">
+           <item>
+            <property name="text">
+             <string>Train</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Validation</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Test</string>
+            </property>
+           </item>
+          </widget>
+          <widget class="QPushButton" name="pBtn_Make_Meta_CSV">
+           <property name="text">
+            <string>Make Meta CSV</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

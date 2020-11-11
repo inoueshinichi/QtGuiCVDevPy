@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EditBorderDialog</class>
+ <widget class="QDialog" name="EditBorderDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>451</width>
+    <height>236</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>451</width>
+    <height>236</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>EditBorderDialog</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <item>
+    <widget class="QGroupBox" name="grp_Make_Border">
+     <property name="title">
+      <string>Make Border</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="lbl_Boarder_Type">
+          <property name="text">
+           <string>Border Type</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cBox_Border_Type">
+          <item>
+           <property name="text">
+            <string>Reflect  [gfedcb|abcdefgh|gfedcba]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Replicate  [aaaaaa|abcdefgh|hhhhhhh]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Warp  [cdefgh|abcdefgh|abcdefg]</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Constant  [iiiiii|abcdefgh|iiiiiii]</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QGroupBox" name="grp_Location">
+          <property name="title">
+           <string>Location</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbl_Left">
+             <property name="text">
+              <string>Left</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Left">
+             <property name="maximum">
+              <number>5000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_Top">
+             <property name="text">
+              <string>Top</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Top">
+             <property name="maximum">
+              <number>5000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lbl_Right">
+             <property name="text">
+              <string>Right</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Right">
+             <property name="maximum">
+              <number>5000</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="lbl_Bottom">
+             <property name="text">
+              <string>Bottom</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Bottom">
+             <property name="maximum">
+              <number>5000</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="grp_Constant_Color">
+          <property name="title">
+           <string>Constant Color</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="lbl_Constant_Gray">
+             <property name="text">
+              <string>Gray</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Constant_Gray">
+             <property name="maximum">
+              <number>255</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lbl_Constant_Red">
+             <property name="text">
+              <string>Red</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Constant_Red">
+             <property name="maximum">
+              <number>255</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lbl_Constant_Green">
+             <property name="text">
+              <string>Green</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Constant_Green">
+             <property name="maximum">
+              <number>255</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="lbl_Constant_B">
+             <property name="text">
+              <string>Blue</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="sBox_Border_Constant_Blue">
+             <property name="maximum">
+              <number>255</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPushButton" name="pBtn_Make_Border_Clear_Location">
+          <property name="text">
+           <string>Clear Loc</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pBtn_Make_Border_Clear_Color">
+          <property name="text">
+           <string>Clear Color</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pBtn_Make_Border_Apply">
+          <property name="text">
+           <string>Make</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grp_Erase_Border">
+     <property name="title">
+      <string>Erase Border</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_Erase_Border_Left">
+        <property name="text">
+         <string>Left</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="sBox_Erase_Border_Left">
+        <property name="maximum">
+         <number>5000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lbl_Erase_Border_Top">
+        <property name="text">
+         <string>Top</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="sBox_Erase_Border_Top">
+        <property name="maximum">
+         <number>5000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lbl_Erase_Border_Right">
+        <property name="text">
+         <string>Right</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="sBox_Erase_Border_Right">
+        <property name="maximum">
+         <number>5000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lbl_Erase_Border_Bottom">
+        <property name="text">
+         <string>Bottom</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="sBox_Erase_Border_Bottom">
+        <property name="maximum">
+         <number>5000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="QPushButton" name="pBtn_Erase_Border_Apply">
+        <property name="text">
+         <string>Erase</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QPushButton" name="pBtn_Erase_Border_Clear_Location">
+        <property name="text">
+         <string>Clear Loc</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
