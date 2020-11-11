@@ -1,7 +1,8 @@
 # Ignore dir and specified file
 
 # ディレクトリを無視
-./**/data/
+data
+
 
 # ファイル拡張子
 ./**/*.bmp
