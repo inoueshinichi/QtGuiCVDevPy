@@ -1,0 +1,14 @@
+# Ignore dir and specified file
+
+# ディレクトリを無視
+./data/
+
+# ファイル拡張子
+./**/*.bmp
+./**/*.BMP
+./**/*.png
+./**/*.jpg
+./**/*.jpeg
+./**/*.pgm
+./**/*.tiff
+
