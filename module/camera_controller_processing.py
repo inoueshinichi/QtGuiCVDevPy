@@ -66,7 +66,7 @@ class ProcessCameraController:
 
         self.process = Process(target=self._capture_loop_in_process,
                                args=(self.cap, self.sm_is_running, self.sm_frame, self.sm_fps, self.sm_elapsed_time),
-                               name="Process for camera device id={0}.".format(self.cap.get_device_id()),
+                               name="Process for camera device id={0}.".format(self.cap.get_device_id),
                                daemon=True) # daemonプロセスは明示的にjoin()が必要.
 
         self.process.start()
