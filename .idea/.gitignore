@@ -1,3 +1,14 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# 画像ファイル
+*.bmp
+*.png
+*.pgm
+*.tiff
+*.jpg
+*.jpeg
+
+# データフォルダ
+data/
