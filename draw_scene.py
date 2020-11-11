@@ -368,7 +368,7 @@ class DrawScene(QGraphicsScene):
         """
         rect_list = []
         if self.figure_dict_roi['item']:
-            rect_list = [(key, value.__rect()) for key, value in self.figure_dict_roi['item'].items()]
+            rect_list = [(key, value.rect()) for key, value in self.figure_dict_roi['item'].items()]
         return rect_list
 
     def roi_qimages(self) -> Dict[str, QImage]:
@@ -379,7 +379,7 @@ class DrawScene(QGraphicsScene):
         roi_imgs = {}
         if self.figure_dict_roi['item']:
             for key, value in self.figure_dict_roi['item'].items():
-                rect_f = value.__rect() # QRectF
+                rect_f = value.rect() # QRectF
                 roi_imgs[key] = self.source_dib_qimage.copy(rect_f.toRect())
         return roi_imgs
 
@@ -408,7 +408,7 @@ class DrawScene(QGraphicsScene):
         """
         ellipse_list = []
         if self.figure_dict_ellipse['item']:
-            ellipse_list = [(key, value.__rect()) for key, value in self.figure_dict_ellipse['item'].items()]
+            ellipse_list = [(key, value.rect()) for key, value in self.figure_dict_ellipse['item'].items()]
         return ellipse_list
 
     def ellipse_qimages(self, inner:bool=True) -> Dict[str, QImage]:
@@ -419,7 +419,7 @@ class DrawScene(QGraphicsScene):
         ellipse_imgs = {}
         if self.figure_dict_ellipse['item']:
             for key, value in self.figure_dict_ellipse['item'].items():
-                rect_f = value.__rect() # QRectF
+                rect_f = value.rect() # QRectF
                 width = rect_f.toRect().width()
                 height = rect_f.toRect().height()
                 img = self.source_dib_qimage.copy(rect_f.toRect())
