@@ -1,3 +1,2 @@
 # QtGuiCVDevPy
-
-Python GUI for Image Processing
+PySide2を用いた画像処理開発用アプリケーション
