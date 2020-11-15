@@ -3,13 +3,13 @@
 画像処理開発用アプリケーション
 
 Requirements:
-  numpy [version]
-  scipy [version]
-  matplotlib [version]
-  Pyside2 [version]
-  qimage2ndarray [version]
-  pytorch [version]
-  opencv [version]
-  scikit-learn [version]
+  numpy [version] </br>
+  scipy [version] </br>
+  matplotlib [version] </br>
+  Pyside2 [version] </br>
+  qimage2ndarray [version] </br>
+  pytorch [version] </br>
+  opencv [version] </br>
+  scikit-learn [version] </br>
   
   
