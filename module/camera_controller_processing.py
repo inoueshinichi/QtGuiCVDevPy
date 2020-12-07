@@ -10,8 +10,24 @@ import time
 import datetime as dt
 import platform
 from collections import deque
-from typing import (List, Dict, Tuple, Union, Callable, Any, NoReturn, NewType, Type)
-from multiprocessing import (Process, Pipe, Value, Array, freeze_support)
+from multiprocessing import (
+    Process,
+    Pipe,
+    Value,
+    Array,
+    freeze_support
+)
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NoReturn,
+    NewType,
+    Type
+)
 
 # サードパーティ
 import numpy as np
