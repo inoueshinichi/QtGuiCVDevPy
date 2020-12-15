@@ -3,16 +3,13 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_MainWindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.14.1
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
+from PySide2.QtCore import *
+from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 from image_table_view import ImageTableView
@@ -20,9 +17,9 @@ from image_table_view import ImageTableView
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        if MainWindow.objectName():
+        if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(811, 257)
+        MainWindow.resize(811, 281)
         sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -354,6 +351,8 @@ class Ui_MainWindow(object):
         self.actionFitting_Curve.setObjectName(u"actionFitting_Curve")
         self.actionFitting_Ellipse = QAction(MainWindow)
         self.actionFitting_Ellipse.setObjectName(u"actionFitting_Ellipse")
+        self.actionShading = QAction(MainWindow)
+        self.actionShading.setObjectName(u"actionShading")
         self.centralWidget = QWidget(MainWindow)
         self.centralWidget.setObjectName(u"centralWidget")
         sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
@@ -488,7 +487,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 811, 22))
+        self.menuBar.setGeometry(QRect(0, 0, 811, 26))
         self.menuFile = QMenu(self.menuBar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuSave_As = QMenu(self.menuFile)
@@ -644,6 +643,7 @@ class Ui_MainWindow(object):
         self.menuMask.addAction(self.actionMask_Import)
         self.menuMask.addAction(self.actionMask_Export)
         self.menuProcess.addAction(self.actionBlur)
+        self.menuProcess.addAction(self.actionShading)
         self.menuProcess.addAction(self.actionUnsharp_Masking)
         self.menuProcess.addAction(self.actionEdge_Detector)
         self.menuProcess.addAction(self.actionMapping)
@@ -1073,6 +1073,10 @@ class Ui_MainWindow(object):
         self.actionFitting_Line.setText(QCoreApplication.translate("MainWindow", u"Fitting Line", None))
         self.actionFitting_Curve.setText(QCoreApplication.translate("MainWindow", u"Fitting Curve", None))
         self.actionFitting_Ellipse.setText(QCoreApplication.translate("MainWindow", u"Fitting Ellipse", None))
+        self.actionShading.setText(QCoreApplication.translate("MainWindow", u"Shading", None))
+#if QT_CONFIG(tooltip)
+        self.actionShading.setToolTip(QCoreApplication.translate("MainWindow", u"Shading Correction", None))
+#endif // QT_CONFIG(tooltip)
         self.rBtn_View_Mode.setText(QCoreApplication.translate("MainWindow", u"View", None))
         self.rBtn_File_Mode.setText(QCoreApplication.translate("MainWindow", u"File", None))
         self.lEdit_Input_Dir.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Input Directory", None))

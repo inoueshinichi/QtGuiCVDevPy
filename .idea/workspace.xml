@@ -13,6 +13,7 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+<<<<<<< HEAD
         <item name="GROUP_NODE:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
@@ -20,11 +21,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca3b2708-ef4e-4fef-a4b6-d9f200742ee4" name="Default Changelist" comment="update" />
+=======
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="872e7409-0ef0-44a6-9ec8-fb726e4335fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/QtGuiCVDevPy_v3.0.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QtGuiCVDevPy_v3.0.0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shading_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/shading_dialog.py" afterDir="false" />
+    </list>
+>>>>>>> master/master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FavoritesManager">
+    <favorites_list name="QtGuiCVDevPy" />
+  </component>
+>>>>>>> master/master
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -35,16 +63,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectId" id="1dZW70cxlCG4Nox0MYcMqHK4ALS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
+=======
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/inoueshinichi/QtGuiCVDevPy.git" />
+      </set>
+    </option>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="pazidiry" />
+  </component>
+  <component name="ProjectId" id="1k8U8CpTtgu6vYO3NJyJC5yG8kO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+>>>>>>> master/master
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -63,13 +109,24 @@
   </component>
   <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python">
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.project" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+>>>>>>> master/master
       <module name="QtGuiCVDevPy_v3.0.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+<<<<<<< HEAD
       <option name="SDK_HOME" value="C:\Anaconda5.1\envs\WorkPy36\python.exe" />
+=======
+      <option name="SDK_HOME" value="C:\Users\71349012\Anaconda3\envs\WorkPy36\python.exe" />
+>>>>>>> master/master
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -83,6 +140,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <configuration name="test_geometry_module" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="QtGuiCVDevPy_v3.0.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,6 +226,9 @@
       <method v="2" />
     </configuration>
     <configuration name="test_resolution_module" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+=======
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+>>>>>>> master/master
       <module name="QtGuiCVDevPy_v3.0.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -175,11 +236,19 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/test_resolution_module.py" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+>>>>>>> master/master
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,6 +257,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
     <recent_temporary>
       <list>
         <item itemvalue="Python.test_multi_images (1)" />
@@ -198,11 +268,16 @@
       </list>
     </recent_temporary>
   </component>
+=======
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+>>>>>>> master/master
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="ca3b2708-ef4e-4fef-a4b6-d9f200742ee4" name="Default Changelist" comment="" />
       <created>1592632924589</created>
       <option name="number" value="Default" />
@@ -266,6 +341,29 @@
       <updated>1608030825900</updated>
     </task>
     <option name="localTasksCounter" value="9" />
+=======
+      <changelist id="872e7409-0ef0-44a6-9ec8-fb726e4335fe" name="Default Changelist" comment="" />
+      <created>1605081551835</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605081551835</updated>
+    </task>
+    <task id="LOCAL-00001" summary="self.cap.device_id() - &gt; self.cap.device_id">
+      <created>1605081678158</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605081678158</updated>
+    </task>
+    <task id="LOCAL-00002" summary="__rect() -&gt; rect()">
+      <created>1605081696790</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605081696790</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+>>>>>>> master/master
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -273,13 +371,31 @@
       <map>
         <entry key="MAIN">
           <value>
+<<<<<<< HEAD
             <State />
+=======
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER" />
+            </State>
+>>>>>>> master/master
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="update" />
@@ -418,5 +534,91 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+=======
+    <MESSAGE value="self.cap.device_id() - &gt; self.cap.device_id" />
+    <MESSAGE value="__rect() -&gt; rect()" />
+    <option name="LAST_COMMIT_MESSAGE" value="__rect() -&gt; rect()" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="369" y="189" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608029968162">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="369" y="189" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608029968162" />
+    <state x="2490" y="-122" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1605744178417" />
+    <state x="2756" y="25" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605744967208">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state x="2756" y="25" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1605744967208" />
+    <state width="1141" height="466" key="DebuggerActiveHint" timestamp="1606469392371">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state width="1141" height="466" key="DebuggerActiveHint/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469392371" />
+    <state x="2978" y="-66" key="FileChooserDialogImpl" timestamp="1605744119322">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state x="2978" y="-66" key="FileChooserDialogImpl/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1605744119322" />
+    <state x="3243" y="273" key="FileChooserDialogImpl/0.0.1536.834/1920.0.2560.1050@1920.0.2560.1050" timestamp="1605081569884" />
+    <state width="875" height="245" key="GridCell.Tab.0.bottom" timestamp="1608030126424">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="875" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1608030126424" />
+    <state width="2027" height="167" key="GridCell.Tab.0.bottom/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469964369" />
+    <state width="1500" height="111" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1606448747542" />
+    <state width="875" height="245" key="GridCell.Tab.0.center" timestamp="1608030126421">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="875" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1608030126421" />
+    <state width="2027" height="167" key="GridCell.Tab.0.center/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469964369" />
+    <state width="1500" height="111" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1606448747542" />
+    <state width="875" height="245" key="GridCell.Tab.0.left" timestamp="1608030126419">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="875" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1608030126419" />
+    <state width="2027" height="167" key="GridCell.Tab.0.left/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469964369" />
+    <state width="1500" height="111" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1606448747542" />
+    <state width="875" height="245" key="GridCell.Tab.0.right" timestamp="1608030126422">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="875" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1608030126422" />
+    <state width="2027" height="167" key="GridCell.Tab.0.right/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469964369" />
+    <state width="1500" height="111" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1606448747542" />
+    <state width="2027" height="127" key="GridCell.Tab.1.bottom" timestamp="1606469818014">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state width="2027" height="127" key="GridCell.Tab.1.bottom/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469818014" />
+    <state width="2027" height="127" key="GridCell.Tab.1.center" timestamp="1606469818014">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state width="2027" height="127" key="GridCell.Tab.1.center/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469818014" />
+    <state width="2027" height="127" key="GridCell.Tab.1.left" timestamp="1606469818014">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state width="2027" height="127" key="GridCell.Tab.1.left/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469818014" />
+    <state width="2027" height="127" key="GridCell.Tab.1.right" timestamp="1606469818014">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state width="2027" height="127" key="GridCell.Tab.1.right/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1606469818014" />
+    <state x="229" y="88" key="SettingsEditor" timestamp="1608029906696">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="229" y="88" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1608029906696" />
+    <state x="3055" y="251" key="Vcs.Push.Dialog.v2" timestamp="1605081706482">
+      <screen x="1920" y="0" width="2560" height="1050" />
+    </state>
+    <state x="3055" y="251" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.2560.1050@1920.0.2560.1050" timestamp="1605081706482" />
+    <state x="403" y="278" key="com.intellij.ide.util.TipDialog" timestamp="1608028265255">
+      <screen x="0" y="23" width="1440" height="831" />
+    </state>
+    <state x="403" y="278" key="com.intellij.ide.util.TipDialog/0.23.1440.831@0.23.1440.831" timestamp="1608028265255" />
+    <state x="3009" y="104" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605744532138">
+      <screen x="1920" y="-358" width="2048" height="1122" />
+    </state>
+    <state x="3009" y="104" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834/1920.-358.2048.1122@1920.-358.2048.1122" timestamp="1605744532138" />
+    <state x="3281" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834/1920.0.2560.1050@1920.0.2560.1050" timestamp="1605081877500" />
+    <state x="3226" y="419" width="915" height="219" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1605081928281">
+      <screen x="1920" y="0" width="2560" height="1050" />
+    </state>
+    <state x="3226" y="419" width="915" height="219" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.834/1920.0.2560.1050@1920.0.2560.1050" timestamp="1605081928281" />
+>>>>>>> master/master
   </component>
 </project>

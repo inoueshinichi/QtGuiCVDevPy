@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>811</width>
-    <height>257</height>
+    <height>281</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -197,7 +197,7 @@
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -315,6 +315,7 @@
      <string>Process</string>
     </property>
     <addaction name="actionBlur"/>
+    <addaction name="actionShading"/>
     <addaction name="actionUnsharp_Masking"/>
     <addaction name="actionEdge_Detector"/>
     <addaction name="actionMapping"/>
@@ -1541,6 +1542,14 @@
   <action name="actionFitting_Ellipse">
    <property name="text">
     <string>Fitting Ellipse</string>
+   </property>
+  </action>
+  <action name="actionShading">
+   <property name="text">
+    <string>Shading</string>
+   </property>
+   <property name="toolTip">
+    <string>Shading Correction</string>
    </property>
   </action>
  </widget>

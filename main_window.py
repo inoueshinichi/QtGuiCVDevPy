@@ -64,6 +64,7 @@ from ui.ui_MainWindow import Ui_MainWindow
 from image_window import ImageWindow
 from edit_border_dialog import EditBorderDialog
 from blur_dialog import BlurDialog
+# from shading_dialog import ShadingDialog
 from unsharp_masking_dialog import UnsharpMaskingDialog
 from edge_detector_dialog import EdgeDetectorDialog
 from binarize_dialog import BinarizeDialog
@@ -80,7 +81,7 @@ from ids_video_window import IDSVideoWindow # 編集中
 from omron_video_window import OMRONVideoWindow # 編集中
 from image_table_model import ImageTableModel
 from image_table_delegate import ImageTableDelegate
-from module.utils import new_serial_number_filename
+from module import utils
 from module.qt_module.qt_def import *
 from module.imgproc.color import *
 from module.imgproc.histgram import *
@@ -320,6 +321,9 @@ class MainWindow(QMainWindow):
         # Blur
         self.ui.actionBlur.triggered.connect(self._act_menubar_blur)
 
+        # Shading
+        self.ui.actionShading.triggered.connect(self._act_menubar_shading)
+
         # UnsharpMasking
         self.ui.actionUnsharp_Masking.triggered.connect(self._act_menubar_unsharp_masking)
 
@@ -506,7 +510,7 @@ class MainWindow(QMainWindow):
                     # 最新連番でファイル名を作成
                     filename = file_path.split('/')[-1]
                     stored_filenames = [img_win.filename for img_win in self.img_wins]
-                    filename = new_serial_number_filename(filename, stored_filenames)
+                    filename = utils.new_serial_number_filename(filename, stored_filenames)
 
                     # QImage
                     droped_qimage = QImage(file_path)
@@ -896,7 +900,7 @@ class MainWindow(QMainWindow):
 
                 filename = file_path.split('/')[-1]
                 stored_filenames = [img_win.filename for img_win in self.img_wins]
-                filename = new_serial_number_filename(filename, stored_filenames)
+                filename = utils.new_serial_number_filename(filename, stored_filenames)
 
                 new_img_win = ImageWindow(self)
                 new_img_win.filename = filename
@@ -1606,7 +1610,7 @@ class MainWindow(QMainWindow):
                             name, ext = filename.split('.')
                             filename = name + "_crop" + "." + ext
 
-                        new_filename = new_serial_number_filename(filename, stored_filenames)
+                        new_filename = utils.new_serial_number_filename(filename, stored_filenames)
                         new_img_win.set_filename(new_filename)
                         self.img_wins.append(new_img_win)
                         new_img_win.show()
@@ -1640,7 +1644,7 @@ class MainWindow(QMainWindow):
 
                 filename = self.last_active_img_win.filename
                 stored_filenames = [img_win.filename for img_win in self.img_wins]
-                new_filename = new_serial_number_filename(filename, stored_filenames)
+                new_filename = utils.new_serial_number_filename(filename, stored_filenames)
 
                 new_img_win = ImageWindow(self)
                 new_img_win.set_filename(new_filename)
@@ -1654,7 +1658,12 @@ class MainWindow(QMainWindow):
                 new_img_win.scene.update()
 
                 # 画像サイズに合わせてウィンドウサイズを変更
-                adjust_viewport(qimage_deplicate, new_img_win.ui.gView, new_img_win)
+                # adjust_viewport(qimage_deplicate, new_img_win.ui.gView, new_img_win)
+
+                # 元WindowのViewport設定とジオメトリーを引き継ぐ
+                new_img_win.ui.gView.setTransform(self.last_active_img_win.ui.gView.transform())
+                new_img_win.setGeometry(self.last_active_img_win.geometry())
+
             else:
                 QMessageBox.warning(self, "Duplicate", "QImageがNullです.", QMessageBox.Ok)
         else:
@@ -1807,7 +1816,7 @@ class MainWindow(QMainWindow):
         if video_window is not None:
             title = video_window.windowTitle()
             win_titles = [win.windowTitle() for win in self.img_wins]
-            new_title = new_serial_number_filename(title, win_titles)
+            new_title = utils.new_serial_number_filename(title, win_titles)
             video_window.set_filename(new_title)
             self.img_wins.append(video_window)  # self.img_winsで一括管理
             video_window.show()
@@ -1823,6 +1832,17 @@ class MainWindow(QMainWindow):
         blur_dialog = BlurDialog(self)
         blur_dialog.show()
         blur_dialog.activateWindow()
+
+    @Slot()
+    def _act_menubar_shading(self):
+        """
+        シェーディング補正用のダイアログを開く
+        :return:
+        """
+        # shading_dialog = ShadingDialog(self)
+        # shading_dialog.show()
+        # shading_dialog.activateWindow()
+        pass
 
     @Slot()
     def _act_menubar_unsharp_masking(self):
