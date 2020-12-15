@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca3b2708-ef4e-4fef-a4b6-d9f200742ee4" name="Default Changelist" comment="Update .gitignore" />
+    <list default="true" id="ca3b2708-ef4e-4fef-a4b6-d9f200742ee4" name="Default Changelist" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -258,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608030586674</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update">
+      <created>1608030825900</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608030825900</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -379,13 +386,14 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1267" y="253" key="Vcs.Push.Dialog.v2/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068594741" />
-    <state x="1548" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608030675019">
+    <state x="1548" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608031007006">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="1548" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1040/-1920.0.1920.1040@0.0.2560.1040" timestamp="1608030675019" />
-    <state x="1270" y="316" key="git4idea.merge.GitPullDialog" timestamp="1605068452837">
+    <state x="1548" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1040/-1920.0.1920.1040@0.0.2560.1040" timestamp="1608031007006" />
+    <state x="1270" y="316" key="git4idea.merge.GitPullDialog" timestamp="1608030840009">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
+    <state x="1270" y="316" key="git4idea.merge.GitPullDialog/0.0.2560.1040/-1920.0.1920.1040@0.0.2560.1040" timestamp="1608030840009" />
     <state x="1270" y="316" key="git4idea.merge.GitPullDialog/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068452837" />
   </component>
   <component name="XDebuggerManager">
