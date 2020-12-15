@@ -781,7 +781,6 @@ class DrawScene(QGraphicsScene):
                                     self.item_y_profile_path['green'] = QGraphicsPathItem(self.item_qpixmap)
                                     self.item_y_profile_path['green'].setPen(QPen(Qt.cyan, 1))
                                     self.item_y_profile_path['green'].setBrush(QBrush(Qt.NoBrush))
-
                             else:
                                 """Color(RGB)"""
                                 # X-Line
