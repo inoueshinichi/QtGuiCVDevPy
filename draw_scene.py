@@ -710,6 +710,14 @@ class DrawScene(QGraphicsScene):
                         h_scrl = view.horizontalScrollBar()
                         x_scrl_value = h_scrl.value()
                         y_scrl_value = v_scrl.value()
+                        view_width = int(view.width())  # スケール対応
+                        view_height = int(view.height())
+                        view_hScrl_height = int(h_scrl.height())
+                        view_vScrl_width = int(v_scrl.width())
+                        view_x_scrl_value = int(x_scrl_value)
+                        view_y_scrl_value = int(y_scrl_value)
+                        viewport_width = view.viewport().width()
+                        viewport_height = view.viewport().height()
 
                         """スクロールバーの戻り値value()がnegativeを示す場合があるので、強制的に0にする。
                             バグ? by shinichi inoue 20.03.12
@@ -723,70 +731,34 @@ class DrawScene(QGraphicsScene):
                             print("Force to zero the negative y_scrl_value")
                             y_scrl_value = 0
 
-                        # QGraphicsPixmapItemのローカル座標
+                        # 座標・サイズ
                         local_qpixmap_item_pos = item.mapToItem(item, scene_pos)
                         qpixmap_rect = self.off_screen_ddb_qpixmap.rect()
+                        img_width = self.item_qpixmap.boundingRect().width()
+                        img_height = self.item_qpixmap.boundingRect().height()
+                        view_anchor = view.mapFromScene(0.0, 0.0)
+                        profile_y = local_qpixmap_item_pos.toPoint().y()
+                        profile_x = local_qpixmap_item_pos.toPoint().x()
 
                         if qpixmap_rect.contains(local_qpixmap_item_pos.toPoint()):
                             # PainterPathのにデータを格納
                             if self.source_dib_qimage.allGray():
                                 """Grayscale"""
-                                view_width = int(view.width() / view.scale_factor)  # スケール対応
-                                view_height = int(view.height() / view.scale_factor)
-                                view_hScrl_height = int(h_scrl.height() / view.scale_factor)
-                                view_vScrl_width = int(v_scrl.width() / view.scale_factor)
-                                view_x_scrl_value = int(x_scrl_value / view.scale_factor)
-                                view_y_scrl_value = int(y_scrl_value / view.scale_factor)
-
                                 # x-Line
                                 self.x_profile_path["green"].clear()
-                                for x in range(0 + x_scrl_value, int(self.item_qpixmap.boundingRect().width()) - 1):
-                                    x_gray = self.source_dib_qimage.pixelColor(x, local_qpixmap_item_pos.toPoint().y()).green()
-                                    x_next_gray = self.source_dib_qimage.pixelColor(x+1, local_qpixmap_item_pos.toPoint().y()).green()
-
-                                    # if x < view_width - v_scrl.width() + view_x_scrl_value:
-                                    if x < view_width - view_vScrl_width + view_x_scrl_value:
-                                        if self.source_dib_qimage.rect().height() + 256 > view.height():
-                                            self.x_profile_path['green'].moveTo(
-                                                x,
-                                                # view.height() - x_gray + y_scrl_value - h_scrl.height()
-                                                view_height - x_gray + view_y_scrl_value - view_hScrl_height)
-                                            self.x_profile_path['green'].lineTo(
-                                                x+1,
-                                                # view.height() - x_next_gray + y_scrl_value - h_scrl.height()
-                                                view_height - x_next_gray + view_y_scrl_value - view_hScrl_height)
-                                        else:
-                                            self.x_profile_path['green'].moveTo(
-                                                x,
-                                                self.source_dib_qimage.rect().height() + 256 - x_gray)
-                                            self.x_profile_path['green'].lineTo(
-                                                x+1,
-                                                self.source_dib_qimage.rect().height() + 256 - x_next_gray)
+                                for x in range(0, int(img_width) - 1):
+                                    x_gray = self.source_dib_qimage.pixelColor(x, profile_y).green()
+                                    x_next_gray = self.source_dib_qimage.pixelColor(x + 1, profile_y).green()
+                                    self.x_profile_path['green'].moveTo(x, viewport_height - x_gray - view_anchor.y())
+                                    self.x_profile_path['green'].lineTo(x + 1, viewport_height - x_next_gray - view_anchor.y())
 
                                 # y-Line
                                 self.y_profile_path['green'].clear()
-                                for y in range(0 + y_scrl_value, int(self.item_qpixmap.boundingRect().height()) - 1):
-                                    y_gray = self.source_dib_qimage.pixelColor(local_qpixmap_item_pos.toPoint().x(), y).green()
-                                    y_next_gray = self.source_dib_qimage.pixelColor(local_qpixmap_item_pos.x(), y+1).green()
-
-                                    # if y < view_height - h_scrl.height() + y_scrl_value:
-                                    if y < view_height - view_hScrl_height + view_y_scrl_value:
-                                        if self.source_dib_qimage.width() + 256 > view.width():
-                                            self.y_profile_path['green'].moveTo(
-                                                # view.width() - y_gray + x_scrl_value - v_scrl.width(),
-                                                view_width - y_gray + view_x_scrl_value - view_vScrl_width,
-                                                y)
-                                            self.y_profile_path['green'].lineTo(
-                                                # view.width() - y_next_gray + x_scrl_value - v_scrl.width(),
-                                                view_width - y_next_gray + view_x_scrl_value - view_vScrl_width,
-                                                y+1)
-                                        else:
-                                            self.y_profile_path['green'].moveTo(
-                                                self.source_dib_qimage.rect().width() + 256 - y_gray,
-                                                y)
-                                            self.y_profile_path['green'].lineTo(
-                                                self.source_dib_qimage.rect().width() + 256 - y_next_gray,
-                                                y+1)
+                                for y in range(0, int(img_height) - 1):
+                                    y_gray = self.source_dib_qimage.pixelColor(profile_x, y).green()
+                                    y_next_gray = self.source_dib_qimage.pixelColor(profile_x, y + 1).green()
+                                    self.y_profile_path['green'].moveTo(viewport_width - y_gray - view_anchor.x(), y)
+                                    self.y_profile_path['green'].lineTo(viewport_width - y_next_gray - view_anchor.x(), y + 1)
 
                                 # PainterPathItem
                                 # X-Line
@@ -816,39 +788,29 @@ class DrawScene(QGraphicsScene):
                                 self.x_profile_path['red'].clear()
                                 self.x_profile_path['green'].clear()
                                 self.x_profile_path['blue'].clear()
-                                for x in range(0 + x_scrl_value, int(self.item_qpixmap.boundingRect().width()) - 1):
-                                    pixel = self.source_dib_qimage.pixelColor(x, local_qpixmap_item_pos.toPoint().y())
+                                for x in range(0, int(img_width) - 1):
+                                    pixel = self.source_dib_qimage.pixelColor(x, profile_y)
                                     x_red, x_green, x_blue = pixel.red(), pixel.green(), pixel.blue()
-                                    next_pixel = self.source_dib_qimage.pixelColor(x+1, local_qpixmap_item_pos.toPoint().y())
+                                    next_pixel = self.source_dib_qimage.pixelColor(x + 1, profile_y)
                                     x_next_red, x_next_green, x_next_blue = next_pixel.red(), next_pixel.green(), next_pixel.blue()
                                     x_lum_pairs = [(x_red, x_next_red), (x_green, x_next_green), (x_blue, x_next_blue)]
-                                    if x < view.width() - v_scrl.width() + x_scrl_value:
-                                        for key, lum_pair in zip(self.x_profile_path.keys(), x_lum_pairs):
-                                            self.x_profile_path[key].moveTo(
-                                                x,
-                                                view.height() - lum_pair[0] + y_scrl_value - h_scrl.height())
-                                            self.x_profile_path[key].lineTo(
-                                                x + 1,
-                                                view.height() - lum_pair[1] + y_scrl_value - h_scrl.height())
+                                    for key, lum_pair in zip(self.x_profile_path.keys(), x_lum_pairs):
+                                        self.x_profile_path[key].moveTo(x, viewport_height - lum_pair[0] - view_anchor.y())
+                                        self.x_profile_path[key].lineTo(x + 1, viewport_height - lum_pair[1] - view_anchor.y())
 
                                 # Y-Line
                                 self.y_profile_path['red'].clear()
                                 self.y_profile_path['green'].clear()
                                 self.y_profile_path['blue'].clear()
-                                for y in range(0 + y_scrl_value, int(self.item_qpixmap.boundingRect().height()) - 1):
-                                    pixel = self.source_dib_qimage.pixelColor(local_qpixmap_item_pos.toPoint().x(), y)
+                                for y in range(0, int(img_height) - 1):
+                                    pixel = self.source_dib_qimage.pixelColor(profile_x, y)
                                     y_red, y_green, y_blue = pixel.red(), pixel.green(), pixel.blue()
-                                    next_pixel = self.source_dib_qimage.pixelColor(local_qpixmap_item_pos.toPoint().x(), y+1)
+                                    next_pixel = self.source_dib_qimage.pixelColor(profile_x, y + 1)
                                     y_next_red, y_next_green, y_next_blue = next_pixel.red(), next_pixel.green(), next_pixel.blue()
                                     y_lum_pairs = [(y_red, y_next_red), (y_green, y_next_green), (y_blue, y_next_blue)]
-                                    if y < view.height() - h_scrl.height() + y_scrl_value:
-                                        for key, lum_pair in zip(self.y_profile_path.keys(), y_lum_pairs):
-                                            self.y_profile_path[key].moveTo(
-                                                view.width() - lum_pair[0] + x_scrl_value - v_scrl.width(),
-                                                y)
-                                            self.y_profile_path[key].lineTo(
-                                                view.width() - lum_pair[1] + x_scrl_value - v_scrl.width(),
-                                                y+1)
+                                    for key, lum_pair in zip(self.y_profile_path.keys(), y_lum_pairs):
+                                        self.y_profile_path[key].moveTo(viewport_width - lum_pair[0] - view_anchor.x(), y)
+                                        self.y_profile_path[key].lineTo(viewport_width - lum_pair[1] - view_anchor.x(), y + 1)
 
                                 # PainterPathItem
                                 for key, color in [('red', Qt.red), ('green', Qt.green), ('blue', Qt.blue)]:
