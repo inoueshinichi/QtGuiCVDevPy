@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ca3b2708-ef4e-4fef-a4b6-d9f200742ee4" name="Default Changelist" comment="Update .gitignore" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1dZW70cxlCG4Nox0MYcMqHK4ALS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\井上真一\Desktop\QtGuiCVDevPy_v3.0.0\Test\data" />
+      <recent name="C:\Users\井上真一\Desktop\QtGuiCVDevPy_v3.0.0\data" />
+      <recent name="C:\Users\井上真一\Desktop\QtGuiCVDevPy_v3.0.0" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\井上真一\Desktop\QtGuiCVDevPy_v3.0.0\module\MLDL\DL" />
+      <recent name="C:\Users\井上真一\Desktop\QtGuiCVDevPy_v3.0.0\Test\data" />
+      <recent name="C:\Users\井上真一\Desktop\QtGuiCVDevPy_v3.0.0\module" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.app">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python">
+      <module name="QtGuiCVDevPy_v3.0.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Anaconda5.1\envs\WorkPy36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_geometry_module" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="QtGuiCVDevPy_v3.0.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/test_geometry_module.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_mapping_module" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="QtGuiCVDevPy_v3.0.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/test_mapping_module.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_multi_images (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="QtGuiCVDevPy_v3.0.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/test_multi_images.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_multi_images" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="QtGuiCVDevPy_v3.0.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/test_multi_images.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_resolution_module" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="QtGuiCVDevPy_v3.0.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/test_resolution_module.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test_multi_images (1)" />
+        <item itemvalue="Python.test_multi_images" />
+        <item itemvalue="Python.test_mapping_module" />
+        <item itemvalue="Python.test_geometry_module" />
+        <item itemvalue="Python.test_resolution_module" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ca3b2708-ef4e-4fef-a4b6-d9f200742ee4" name="Default Changelist" comment="" />
+      <created>1592632924589</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592632924589</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1605066407232</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605066407232</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update .gitignore">
+      <created>1605066731859</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605066731859</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update .gitignore">
+      <created>1605067934917</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605067934917</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update .gitignore">
+      <created>1605068045650</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605068045650</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update .gitignore">
+      <created>1605068186777</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605068186777</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update .gitignore">
+      <created>1605068590734</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605068590734</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <MESSAGE value="Update .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .gitignore" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1041" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602680557849">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1041" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602680557849" />
+    <state x="1029" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601817440831">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1029" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1601817440831" />
+    <state width="1826" height="466" key="DebuggerActiveHint" timestamp="1603564332029">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1826" height="466" key="DebuggerActiveHint/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1603564332028" />
+    <state width="1826" height="466" key="DebuggerActiveHint/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602929661099" />
+    <state width="1696" height="466" key="DebuggerActiveHint/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602759023528" />
+    <state width="1637" height="466" key="DebuggerActiveHint/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602409365745" />
+    <state x="485" y="274" key="FileChooserDialogImpl" timestamp="1602756068653">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="485" y="274" key="FileChooserDialogImpl/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602756068653" />
+    <state x="485" y="274" key="FileChooserDialogImpl/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1601813231385" />
+    <state x="1542" y="418" width="540" height="204" key="Github.ShareDialog" timestamp="1605066044596">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1542" y="418" width="540" height="204" key="Github.ShareDialog/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605066044596" />
+    <state x="1466" y="225" width="759" height="614" key="Github.UntrackedFilesDialog" timestamp="1605066071713">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1466" y="225" width="759" height="614" key="Github.UntrackedFilesDialog/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605066071713" />
+    <state width="1557" height="217" key="GridCell.Tab.0.bottom" timestamp="1605068723993">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1557" height="217" key="GridCell.Tab.0.bottom/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068723993" />
+    <state width="2539" height="221" key="GridCell.Tab.0.bottom/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072033" />
+    <state width="2539" height="169" key="GridCell.Tab.0.bottom/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602926599211" />
+    <state width="2539" height="305" key="GridCell.Tab.0.bottom/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.0.bottom/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="692" height="178" key="GridCell.Tab.0.bottom/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@2560.-581.2560.1413" timestamp="1602352901403" />
+    <state width="1557" height="217" key="GridCell.Tab.0.center" timestamp="1605068723993">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1557" height="217" key="GridCell.Tab.0.center/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068723993" />
+    <state width="2539" height="221" key="GridCell.Tab.0.center/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072033" />
+    <state width="2539" height="169" key="GridCell.Tab.0.center/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602926599211" />
+    <state width="2539" height="305" key="GridCell.Tab.0.center/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.0.center/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="692" height="178" key="GridCell.Tab.0.center/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@2560.-581.2560.1413" timestamp="1602352901403" />
+    <state width="1557" height="217" key="GridCell.Tab.0.left" timestamp="1605068723993">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1557" height="217" key="GridCell.Tab.0.left/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068723993" />
+    <state width="2539" height="221" key="GridCell.Tab.0.left/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072033" />
+    <state width="2539" height="169" key="GridCell.Tab.0.left/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602926599211" />
+    <state width="2539" height="305" key="GridCell.Tab.0.left/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.0.left/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="692" height="178" key="GridCell.Tab.0.left/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@2560.-581.2560.1413" timestamp="1602352901402" />
+    <state width="1557" height="217" key="GridCell.Tab.0.right" timestamp="1605068723993">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="1557" height="217" key="GridCell.Tab.0.right/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068723993" />
+    <state width="2539" height="221" key="GridCell.Tab.0.right/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072033" />
+    <state width="2539" height="169" key="GridCell.Tab.0.right/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602926599211" />
+    <state width="2539" height="305" key="GridCell.Tab.0.right/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.0.right/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="692" height="178" key="GridCell.Tab.0.right/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@2560.-581.2560.1413" timestamp="1602352901403" />
+    <state width="2539" height="221" key="GridCell.Tab.1.bottom" timestamp="1603565086265">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2539" height="221" key="GridCell.Tab.1.bottom/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1603565086265" />
+    <state width="2539" height="221" key="GridCell.Tab.1.bottom/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072034" />
+    <state width="2539" height="319" key="GridCell.Tab.1.bottom/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602770308161" />
+    <state width="2539" height="305" key="GridCell.Tab.1.bottom/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.1.bottom/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="2539" height="221" key="GridCell.Tab.1.center" timestamp="1603565086265">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2539" height="221" key="GridCell.Tab.1.center/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1603565086265" />
+    <state width="2539" height="221" key="GridCell.Tab.1.center/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072033" />
+    <state width="2539" height="319" key="GridCell.Tab.1.center/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602770308161" />
+    <state width="2539" height="305" key="GridCell.Tab.1.center/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.1.center/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="2539" height="221" key="GridCell.Tab.1.left" timestamp="1603565086264">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2539" height="221" key="GridCell.Tab.1.left/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1603565086264" />
+    <state width="2539" height="221" key="GridCell.Tab.1.left/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072033" />
+    <state width="2539" height="319" key="GridCell.Tab.1.left/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602770308161" />
+    <state width="2539" height="305" key="GridCell.Tab.1.left/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.1.left/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state width="2539" height="221" key="GridCell.Tab.1.right" timestamp="1603565086265">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state width="2539" height="221" key="GridCell.Tab.1.right/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1603565086265" />
+    <state width="2539" height="221" key="GridCell.Tab.1.right/0.0.2560.1040/2560.-466.1080.1880/-3840.1.2560.1400@0.0.2560.1040" timestamp="1602960072034" />
+    <state width="2539" height="319" key="GridCell.Tab.1.right/0.0.2560.1040/2560.-836.1080.1880/-3840.-348.2560.1400@0.0.2560.1040" timestamp="1602770308161" />
+    <state width="2539" height="305" key="GridCell.Tab.1.right/2560.-581.2560.1413/-1080.0.1080.1880/0.0.2560.1040@0.0.2560.1040" timestamp="1598197600232" />
+    <state width="1269" height="210" key="GridCell.Tab.1.right/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@0.0.2560.1040" timestamp="1602417274835" />
+    <state x="3233" y="-429" width="1243" height="882" key="SettingsEditor" timestamp="1602343776674">
+      <screen x="2560" y="-581" width="2560" height="1413" />
+    </state>
+    <state x="3233" y="-429" key="SettingsEditor/2560.-581.2560.1413/0.0.2560.1040/-1080.0.1080.1880@2560.-581.2560.1413" timestamp="1602343776674" />
+    <state x="1267" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605068594741">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1267" y="253" key="Vcs.Push.Dialog.v2/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068594741" />
+    <state x="1270" y="316" key="git4idea.merge.GitPullDialog" timestamp="1605068452837">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="1270" y="316" key="git4idea.merge.GitPullDialog/0.0.2560.1040/2560.-466.1080.1880/-3840.0.2560.1400@0.0.2560.1040" timestamp="1605068452837" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/image_table_view.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/module/imgproc/morphology.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
