@@ -64,6 +64,7 @@ from ui.ui_MainWindow import Ui_MainWindow
 from image_window import ImageWindow
 from edit_border_dialog import EditBorderDialog
 from blur_dialog import BlurDialog
+from shading_dialog import ShadingDialog
 from unsharp_masking_dialog import UnsharpMaskingDialog
 from edge_detector_dialog import EdgeDetectorDialog
 from binarize_dialog import BinarizeDialog
@@ -319,6 +320,9 @@ class MainWindow(QMainWindow):
         """Process"""
         # Blur
         self.ui.actionBlur.triggered.connect(self._act_menubar_blur)
+
+        # Shading
+        self.ui.actionShading.triggered.connect(self._act_menubar_shading)
 
         # UnsharpMasking
         self.ui.actionUnsharp_Masking.triggered.connect(self._act_menubar_unsharp_masking)
@@ -1823,6 +1827,16 @@ class MainWindow(QMainWindow):
         blur_dialog = BlurDialog(self)
         blur_dialog.show()
         blur_dialog.activateWindow()
+
+    @Slot()
+    def _act_menubar_shading(self):
+        """
+        シェーディング補正用のダイアログを開く
+        :return:
+        """
+        shading_dialog = ShadingDialog(self)
+        shading_dialog.show()
+        shading_dialog.activateWindow()
 
     @Slot()
     def _act_menubar_unsharp_masking(self):
