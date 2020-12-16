@@ -34,9 +34,10 @@ import skimage
 """
 OK fft
 OK ifft
--- high pass filter
--- low pass filter
--- band pass filter
+-- ハイパスフィルタ
+-- ローパスフィルタ
+-- バンドパスフィルタ
+-- 何か考えろ
 """
 
 def fft_2d(src:np.ndarray, is_shift:bool=True) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
@@ -44,7 +45,6 @@ def fft_2d(src:np.ndarray, is_shift:bool=True) -> Tuple[np.ndarray, np.ndarray, 
     ２次元フーリエ変換
     :param src:
     :param is_shift:
-    :param is_show_degree:
     :return: 変換した振幅, 表示用の振幅, 変換した位相
     """
     assert src.ndim == 2, "src must be grayscale; 2dim."

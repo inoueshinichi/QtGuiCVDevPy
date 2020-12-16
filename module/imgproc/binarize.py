@@ -42,8 +42,6 @@ def otsu_binarize(src:np.ndarray) -> Tuple[List[int], np.ndarray]:
     """
     大津の２値化(判別分析法)
     :param src:
-    :param lower:
-    :param upper:
     :return:
     """
 
