@@ -346,11 +346,6 @@ def help_process_view_mode_2(widget:QWidget, img_proc_func:Callable[[Any], Any],
     return None, None
 
 
-
-
-
-
-
 def help_process_file_mode(widget:QWidget, img_proc_func:Callable[[Any], Any], text:str):
     """
     Fileモード用のラッパー関数
