@@ -26,10 +26,10 @@ from matplotlib import pyplot as plt
 
 # 関数リスト
 """
--- rgb2gray
--- gray2rgb
--- rgb2hsv
--- hsv2rgb
+OK rgb2gray
+OK gray2rgb
+OK rgb2hsv
+OK hsv2rgb
 """
 
 
