@@ -93,6 +93,23 @@ class ImageWindow(QMainWindow):
         """
         return self.filename
 
+    # virtual
+    def duplicate_proparties(self, other:QWidget):
+        """
+        複製元のImageWindowに関する設定を引き継ぐ
+        :param other:
+        :return:
+        """
+        # Scale Level & Scale Factor
+        self.ui.gView.zoom_level_index = other.ui.gView.zoom_level_index
+        self.ui.gView.scale_factor = other.ui.gView.scale_factor
+
+        # Viewport
+        self.ui.gView.setTransform(other.ui.gView.transform())
+
+        # Geometry
+        self.ui.gView.setGeometry(other.geometry())
+
     # override
     def event(self, event:PySide2.QtCore.QEvent) -> bool:
         """

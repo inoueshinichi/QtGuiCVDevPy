@@ -33,8 +33,9 @@ import skimage
 
 """
 -- PnP Solver
--- Zhang Calibration
--- 
+-- Zhang キャリブレーション
+-- 自己キャリブレーション
+-- バンドル調整
 -- 
 """
 

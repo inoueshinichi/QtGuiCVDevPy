@@ -64,8 +64,9 @@ from ui.ui_MainWindow import Ui_MainWindow
 from image_window import ImageWindow
 from edit_border_dialog import EditBorderDialog
 from blur_dialog import BlurDialog
-# from shading_dialog import ShadingDialog
+from shading_dialog import ShadingDialog
 from unsharp_masking_dialog import UnsharpMaskingDialog
+from mapping_dialog import MappingDialog
 from edge_detector_dialog import EdgeDetectorDialog
 from binarize_dialog import BinarizeDialog
 from morphology_dialog import MorphologyDialog
@@ -1641,28 +1642,31 @@ class MainWindow(QMainWindow):
             qimage = self.last_active_img_win.scene.dib_qimage()
             if not qimage.isNull():
                 qimage_deplicate = qimage.copy()
+                target_win = self.last_active_img_win
 
-                filename = self.last_active_img_win.filename
+                filename = target_win.filename
                 stored_filenames = [img_win.filename for img_win in self.img_wins]
                 new_filename = utils.new_serial_number_filename(filename, stored_filenames)
 
                 new_img_win = ImageWindow(self)
                 new_img_win.set_filename(new_filename)
                 self.img_wins.append(new_img_win)
-                new_img_win.show()
                 new_img_win.activateWindow()
+                new_img_win.show()
 
                 # 画像をSceneに登録
                 new_img_win.scene.clear()
                 new_img_win.scene.set_qimage_on_screen(qimage_deplicate, is_raw=True)
                 new_img_win.scene.update()
 
-                # 画像サイズに合わせてウィンドウサイズを変更
-                # adjust_viewport(qimage_deplicate, new_img_win.ui.gView, new_img_win)
-
                 # 元WindowのViewport設定とジオメトリーを引き継ぐ
-                new_img_win.ui.gView.setTransform(self.last_active_img_win.ui.gView.transform())
-                new_img_win.setGeometry(self.last_active_img_win.geometry())
+                new_img_win.ui.gView.setTransform(target_win.ui.gView.transform())
+                new_img_win.setGeometry(target_win.geometry())
+
+                # 元WindowのScaling設定を引き継ぐ
+                new_img_win.ui.gView.zoom_level_index = target_win.ui.gView.zoom_level_index
+                new_img_win.ui.gView.scale_factor = target_win.ui.gView.scale_factor
+                new_img_win.ui.lbl_Image_Scale.setText(target_win.ui.lbl_Image_Scale.text())
 
             else:
                 QMessageBox.warning(self, "Duplicate", "QImageがNullです.", QMessageBox.Ok)
@@ -1839,9 +1843,9 @@ class MainWindow(QMainWindow):
         シェーディング補正用のダイアログを開く
         :return:
         """
-        # shading_dialog = ShadingDialog(self)
-        # shading_dialog.show()
-        # shading_dialog.activateWindow()
+        shading_dialog = ShadingDialog(self)
+        shading_dialog.show()
+        shading_dialog.activateWindow()
         pass
 
     @Slot()
@@ -1870,10 +1874,9 @@ class MainWindow(QMainWindow):
         濃淡変換用のダイアログを開く
         :return:
         """
-        # mapping_dialog = MappingDialog(self)
-        # mapping_dialog.show()
-        # mapping_dialog.activateWindow()
-        pass
+        mapping_dialog = MappingDialog(self)
+        mapping_dialog.show()
+        mapping_dialog.activateWindow()
 
     @Slot()
     def _act_menubar_binarize(self):
