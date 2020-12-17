@@ -114,7 +114,7 @@ class DrawScene(QGraphicsScene):
             'rect': QRectF(0, 0, 0, 0),
             'anchor': QPointF(0, 0),
             'klass': RectGraphicsItem,
-            'color': Qt.magenta
+            'color': Qt.red
         }
 
         # Line(直線)
@@ -150,11 +150,6 @@ class DrawScene(QGraphicsScene):
         self._set_dib_qImage_to_statusbar(scene_pos)
 
         if self.is_mouse_downs['LB']:
-            # cross line
-            self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
-            # profile
-            self._draw_profiles(scene_pos, show=self.is_draw_profile)
-
             # Ctrlが押されているか
             is_ctrl = True if event.modifiers() & Qt.ControlModifier else False
             # Shiftが押されているか
@@ -184,8 +179,22 @@ class DrawScene(QGraphicsScene):
                                    is_center_drag=is_ctrl,
                                    is_square=is_shift)
 
-            # Sceneの描画命令
-            self.update()
+
+        elif self.is_mouse_downs['RB']:
+            # cross line
+            self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
+            # profile
+            self._draw_profiles(scene_pos, show=self.is_draw_profile)
+
+
+        elif self.is_mouse_downs['MB']:
+            pass
+
+        else:
+            pass
+
+        # Sceneの描画命令
+        self.update()
 
         super(DrawScene, self).mouseMoveEvent(event)
 
@@ -196,17 +205,14 @@ class DrawScene(QGraphicsScene):
         :param event:
         :return:
         """
+        # マウス座標
+        scene_pos = event.scenePos()
+
+        # status bar
+        self._set_dib_qImage_to_statusbar(scene_pos)
+
         if event.button() == Qt.MouseButton().LeftButton:
             self.is_mouse_downs['LB'] = True
-            scene_pos = event.scenePos()
-
-            # status bar
-            self._set_dib_qImage_to_statusbar(scene_pos)
-            # cross line
-            self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
-            # profile
-            self._draw_profiles(scene_pos, show=self.is_draw_profile)
-
             # Ctrlが押されているか
             is_ctrl = True if event.modifiers() & Qt.ControlModifier else False
             # Shiftが押されているか
@@ -236,15 +242,14 @@ class DrawScene(QGraphicsScene):
                                    is_center_drag=is_ctrl,
                                    is_square=is_shift)
 
-            # if self.is_mouse_cross_line or\
-            #    self.is_draw_profile or\
-            #    self.figure_dict_roi['is_draw'] or\
-            #    self.figure_dict_line['is_draw'] or\
-            #    self.figure_dict_ellipse['is_draw']:
-
 
         elif event.button() == Qt.MouseButton().RightButton:
             self.is_mouse_downs['RB'] = True
+            # cross line
+            self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
+
+            # profile
+            self._draw_profiles(scene_pos, show=self.is_draw_profile)
 
         elif event.button() == Qt.MouseButton().MiddleButton:
             self.is_mouse_downs['MB'] = True
@@ -264,10 +269,14 @@ class DrawScene(QGraphicsScene):
         :param event:
         :return:
         """
+        # マウス座標
+        scene_pos = event.scenePos()
+
+        # status bar
+        self._set_dib_qImage_to_statusbar(scene_pos)
+
         if event.button() == Qt.MouseButton().LeftButton:
             self.is_mouse_downs['LB'] = False
-            scene_pos = event.scenePos()
-
             # Ctrlが押されているか
             is_ctrl = True if event.modifiers() & Qt.ControlModifier else False
             # Shiftが押されているか
