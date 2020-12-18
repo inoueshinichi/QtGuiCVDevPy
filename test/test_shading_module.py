@@ -12,13 +12,14 @@ from typing import (List, Dict, Tuple, Union, Callable, Any, NewType)
 # サードパーティ
 import numpy as np
 import cv2
+from PIL import Image
 
 # 自作
 cwd = os.getcwd()
 module_dir = "/".join([cwd, "module"])
 sys.path.append(module_dir)
 
-from module.imgproc.shading import shading_correction
+from module.imgproc.shading import shading_correction, shift_shading
 from module.imgproc.blur import median_blur, gaussian_blur
 
 def test_shading_correction():
@@ -49,5 +50,32 @@ def test_shading_correction():
     cv2.imshow("img_show", img_show)
     cv2.waitKey(0)
 
+
+def test_shift_shading():
+    """
+    シフトシェーディング処理のテスト
+    :return:
+    """
+    target_dit = "C:\\Users\\71349012\\Desktop"
+    filename = "test_img.bmp"
+    img_src = cv2.imread(os.sep.join([target_dit, filename]))
+    show_imgs = []
+    img_gray = cv2.cvtColor(img_src, cv2.COLOR_BGR2GRAY)
+    img_master = img_gray
+    show_imgs.append(img_master)
+
+    start = time.perf_counter()
+
+    img_dst = shift_shading(img_gray, shift_value=2, shift_direct='all', emphasize=2.0)
+
+    elapsed_time = (time.perf_counter() - start) * 1000
+    print("elapsed_time [ms]", elapsed_time)
+    show_imgs.append(img_dst)
+
+    img_show = np.concatenate(show_imgs, axis=1)
+    img_pil = Image.fromarray(img_show)
+    img_pil.show()
+
 if __name__ == "__main__":
-    test_shading_correction()
+    # test_shading_correction()
+    test_shift_shading()
