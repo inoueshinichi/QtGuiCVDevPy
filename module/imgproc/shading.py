@@ -58,8 +58,16 @@ def shift_shading(src:np.ndarray, shift_value:int, shift_direct:str, emphasize:f
     シフトシェーディング処理
     :param src:
     :param shift_value: 1, 2, 3, ...
-    :param shift_direct: 左:'left', 上:'top', 右:'right', 下:'bottom', 左上:'left-top', 右上:'right-top',
-                        右下:'right-bottom', 左下:'left-bottom', 上下左右:'cross', 8方向:'all'
+    :param shift_direct: 左:'left',
+                         上:'top',
+                         右:'right',
+                         下:'bottom',
+                         左上:'left-top',
+                         右上:'right-top',
+                         右下:'right-bottom',
+                         左下:'left-bottom',
+                         上下左右:'cross',
+                         8方向:'all'
     :param emphasize: 強調係数
     :return:
     """
