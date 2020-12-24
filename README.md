@@ -11,5 +11,7 @@ Requirements: </br>
   pytorch [version] </br>
   opencv [version] </br>
   scikit-learn [version] </br>
+  scipy [version] </br>
+  PIL [version] </br>
   
   
