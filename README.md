@@ -2,7 +2,7 @@
 
 画像処理開発用アプリケーション
 
-Requirements:
+Requirements: </br>
   numpy [version] </br>
   scipy [version] </br>
   matplotlib [version] </br>
