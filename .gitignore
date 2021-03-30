@@ -1,12 +1,23 @@
-# Ignore dir and specified file
-
-# ディレクトリを無視
+# ディレクトリ
 data
 .idea
 __pycache__
+.vscode
+build
+.ipynb_checkpoints
 
+# 設定ファイル
+*.json
+*.so
+*.dll
+*.pyc
+*.pyd
+*.pkl
+*.npy
+*.pth
+*.ipynb
 
-# 画像ファイル拡張子
+# 画像ファイル
 *.bmp
 *.BMP
 *.png
@@ -15,5 +26,5 @@ __pycache__
 *.pgm
 *.tiff
 
-# レコードファイル拡張子
+# レコードファイル
 *.csv
