@@ -66,7 +66,7 @@ from edit_border_dialog import EditBorderDialog
 from blur_dialog import BlurDialog
 from shading_dialog import ShadingDialog
 from unsharp_masking_dialog import UnsharpMaskingDialog
-from mapping_dialog import MappingDialog
+# from mapping_dialog import MappingDialog
 from edge_detector_dialog import EdgeDetectorDialog
 from binarize_dialog import BinarizeDialog
 from morphology_dialog import MorphologyDialog
