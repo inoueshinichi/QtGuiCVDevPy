@@ -9,8 +9,16 @@ import time
 import datetime
 import pathlib
 from copy import deepcopy
-from typing import (Dict, List, Tuple, Union, Any, Callable, TypeVar, NoReturn)
-
+from typing import (
+    Dict,
+    List,
+    Tuple,
+    Union,
+    Any,
+    Callable,
+    TypeVar,
+    NoReturn
+)
 
 # サードパーティ
 import numpy as np
@@ -24,7 +32,10 @@ import pandas as pd
 import cv2
 import openpyxl
 import PySide2
-from PySide2 import (QtGui, QtCore)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
 from PySide2.QtCore import (
     Signal,
     Slot,
@@ -72,14 +83,14 @@ from binarize_dialog import BinarizeDialog
 from morphology_dialog import MorphologyDialog
 from noise_denoise_dialog import NoiseDenoiseDialog
 from histogram_dialog import HistogramDialog
-from labeling_dialog import LabelingDialog
-from fft_dialog import FFTDialog # 編集中
-from dataset_dialog import DatasetDialog
-from dl_image_recognition_dialog import DLImageRecognitionDialog
+from labeling_dialog import LabelingDialog # 作成中
+from fft_dialog import FFTDialog # 作成中
+from dataset_dialog import DatasetDialog # 編集中
+from dl_image_recognition_dialog import DLImageRecognitionDialog # 作成中
 
-from usb_video_window import USBVideoWindow # 編集中
-from ids_video_window import IDSVideoWindow # 編集中
-from omron_video_window import OMRONVideoWindow # 編集中
+from usb_video_window import USBVideoWindow
+from ids_video_window import IDSVideoWindow
+from omron_video_window import OMRONVideoWindow
 from image_table_model import ImageTableModel
 from image_table_delegate import ImageTableDelegate
 from module import utils
@@ -159,7 +170,6 @@ class MainWindow(QMainWindow):
         self._ui_connection()
         self._custom_connection()
 
-
     def _toolbar_connection(self):
         """
         ToolBarに関するSignal/Slotの接続
@@ -196,7 +206,6 @@ class MainWindow(QMainWindow):
 
         # 角度
         self.ui.actionAngle_Measure.toggled.connect(self._act_toolbar_angle_measure)
-
 
     def _menubar_connection(self):
         """
@@ -447,9 +456,6 @@ class MainWindow(QMainWindow):
         # dl -> Classification -> Image
         self.ui.actionImage.triggered.connect(self._act_menubar_dl_classification_image)
 
-
-
-
     def _ui_connection(self):
         """
         UIに関するSignal/Slotの接続
@@ -473,7 +479,6 @@ class MainWindow(QMainWindow):
         # Search recode in ImageTable
         self.ui.lEdit_ImageTable_Search_Recode.textChanged.connect(self._search_recode_image_table)
 
-
     def _custom_connection(self):
         """
         ユーザー定義のカスタムSignal/Slotの接続
@@ -481,7 +486,6 @@ class MainWindow(QMainWindow):
         """
         # self.mpl_figuresに格納したMatplotlibのfigureオブジェクトを削除
         self.signal_remove_mpl_figures.connect(self._remove_mpl_figures)
-
 
     # override
     def dropEvent(self, event:PySide2.QtGui.QDropEvent):
@@ -538,8 +542,6 @@ class MainWindow(QMainWindow):
                     new_img_win.scene.clear()
                     new_img_win.scene.set_qimage_on_screen(droped_qimage, is_raw=True)
                     new_img_win.scene.update()
-
-
 
             else:
                 # ファイル拡張子が不適切な場合
@@ -644,7 +646,6 @@ class MainWindow(QMainWindow):
                     if drag.exec_(supportedActions=action) == Qt.MoveAction:
                         pass  # dragのイベントループ終了時の処理
 
-
     def _help_apply_qimage(self, img_proc_func: object) -> bool:
         """
         直前のアクティブなImageWindowがもつQImageに対して
@@ -656,7 +657,7 @@ class MainWindow(QMainWindow):
             qimage = self.last_active_img_win.scene.dib_qimage()
             if not qimage.isNull():
                 img_src = qimage2ndarray(qimage)
-                img_dst = img_proc_func(img_src)
+                img_dst, _ = img_proc_func(img_src)
                 qimg_dst = ndarray2qimage(img_dst)
                 self.last_active_img_win.scene.set_qimage_on_screen(qimg_dst)
                 self.last_active_img_win.scene.update()
@@ -774,7 +775,6 @@ class MainWindow(QMainWindow):
         if (self.last_active_img_win is not None) and (isinstance(self.last_active_img_win, ImageWindow)):
             self.last_active_img_win.scene.reset_qimage()
 
-
     @Slot(bool)
     def _act_toolbar_indicator(self):
         """
@@ -803,7 +803,6 @@ class MainWindow(QMainWindow):
         for img_win in self.img_wins:
             img_win.toggle_scene_cross_line(show=checked)
 
-
     @Slot(bool)
     def _act_toolbar_show_profile(self, checked:bool):
         """
@@ -812,7 +811,6 @@ class MainWindow(QMainWindow):
         """
         for img_win in self.img_wins:
             img_win.toggle_scene_profile(show=checked)
-
 
     @Slot(bool)
     def _act_toolbar_roi(self, checked:bool):
@@ -842,8 +840,6 @@ class MainWindow(QMainWindow):
         """
         for img_win in self.img_wins:
             img_win.toggle_scene_ellipse(show=checked)
-
-
 
     @Slot(bool)
     def _act_toolbar_line_measure(self, checked:bool):
@@ -920,7 +916,6 @@ class MainWindow(QMainWindow):
 
                 # 画像サイズに合わせてウィンドウサイズを変更
                 adjust_viewport(qimage, new_img_win.ui.gView, new_img_win)
-
 
     @Slot()
     def _act_menubar_file_close(self):
@@ -1168,7 +1163,7 @@ class MainWindow(QMainWindow):
                 if len(rect_list) > 0:
                     process = "Paste"
 
-                    def paste(src:np.ndarray) -> np.ndarray:
+                    def paste(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         rect = rect_list[-1][-1].toRect()
                         xmin, ymin = rect.x(), rect.y()
                         xmax, ymax = xmin + self.qimage_copy.width(), ymin + self.qimage_copy.height()
@@ -1199,11 +1194,10 @@ class MainWindow(QMainWindow):
                                 img_copy = cv2.cvtColor(img_copy, cv2.COLOR_RGB2GRAY)  # RGB -> Grayscale
 
                         dst[ymin:ymax, xmin:xmax] = img_copy[0:ymax - ymin, 0:xmax - xmin]
-                        return dst
+                        return dst, list()
 
-                    img_proc_func = paste
                     start = time.perf_counter()
-                    self._help_apply_qimage(img_proc_func)
+                    self._help_apply_qimage(paste)
                     elapsed_time = (time.perf_counter() - start) * 1000
                     self.ui.statusBar.clearMessage()
                     self.ui.statusBar.showMessage(
@@ -1230,7 +1224,7 @@ class MainWindow(QMainWindow):
                 if len(rect_list) > 0:
                     process = "Clear"
 
-                    def clear_roi(src:np.ndarray) -> np.ndarray:
+                    def clear_roi(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         for key, rect in rect_list:
                             rect = rect.toRect()
                             xmin = rect.x()
@@ -1239,11 +1233,10 @@ class MainWindow(QMainWindow):
                             ymax = ymin + rect.height()
                             dst = np.copy(src)
                             dst[ymin:ymax, xmin:xmax] = 0
-                        return dst
+                        return dst, list()
 
-                    img_proc_func = clear_roi
                     start = time.perf_counter()
-                    self._help_apply_qimage(img_proc_func)
+                    self._help_apply_qimage(clear_roi)
                     elapsed_time = (time.perf_counter() - start) * 1000
 
                     self.ui.statusBar.clearMessage()
@@ -1272,7 +1265,7 @@ class MainWindow(QMainWindow):
                 if len(rect_list) > 0:
                     process = "Clear outside"
 
-                    def clear_outside_roi(src:np.ndarray) -> np.ndarray:
+                    def clear_outside_roi(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = np.zeros_like(src)
                         for key, rect in rect_list:
                             rect = rect.toRect()
@@ -1281,11 +1274,10 @@ class MainWindow(QMainWindow):
                             xmax = xmin + rect.width()
                             ymax = ymin + rect.height()
                             dst[ymin:ymax, xmin:xmax] = src[ymin:ymax, xmin:xmax]
-                        return dst
+                        return dst, list()
 
-                    img_proc_func = clear_outside_roi
                     start = time.perf_counter()
-                    self._help_apply_qimage(img_proc_func)
+                    self._help_apply_qimage(clear_outside_roi)
                     elapsed_time = (time.perf_counter() - start) * 1000
 
                     self.ui.statusBar.clearMessage()
@@ -1314,7 +1306,7 @@ class MainWindow(QMainWindow):
                     process = "Fill"
                     color = QColorDialog.getColor()
 
-                    def fill(src:np.ndarray) -> np.ndarray:
+                    def fill(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = np.copy(src)
                         if src.ndim == 3 and src.shape[-1] == 3:
                             if color.isValid():
@@ -1338,11 +1330,11 @@ class MainWindow(QMainWindow):
                                     xmax = xmin + rect.width()
                                     ymax = ymin + rect.height()
                                     dst[ymin:ymax, xmin:xmax] = luminance
-                        return dst
 
-                    img_proc_func = fill
+                        return dst, list()
+
                     start = time.perf_counter()
-                    self._help_apply_qimage(img_proc_func)
+                    self._help_apply_qimage(fill)
                     elapsed_time = (time.perf_counter() - start) * 1000
 
                     self.ui.statusBar.clearMessage()
@@ -1370,7 +1362,7 @@ class MainWindow(QMainWindow):
                 process = "Invert"
 
                 if len(rect_list) > 0:
-                    def invert(src: np.ndarray) -> np.ndarray:
+                    def invert(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = np.copy(src)
                         for key, rect in rect_list:
                             rect = rect.toRect()
@@ -1379,15 +1371,14 @@ class MainWindow(QMainWindow):
                             xmax = xmin + rect.width()
                             ymax = ymin + rect.height()
                             dst[ymin:ymax, xmin:xmax] = 255 - src[ymin:ymax, xmin:xmax]
-                        return dst
+                        return dst, list()
                 else:
-                    def invert(src: np.ndarray) -> np.ndarray:
+                    def invert(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = 255 - src
-                        return dst
+                        return dst, list()
 
-                img_proc_func = invert
                 start = time.perf_counter()
-                self._help_apply_qimage(img_proc_func)
+                self._help_apply_qimage(invert)
                 elapsed_time = (time.perf_counter() - start) * 1000
 
                 self.ui.statusBar.clearMessage()
@@ -1536,8 +1527,13 @@ class MainWindow(QMainWindow):
                 sender = self.sender()
                 if sender == self.ui.actionRGB2Gray:
                     process += 'RGB->Gray'
+
+                    def _rgb2gray(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
+                        dst = rgb2gray(src)
+                        return dst, list()
+
                     start = time.perf_counter()
-                    self._help_apply_qimage(rgb2gray)
+                    self._help_apply_qimage(_rgb2gray)
                     elapsed_time = (time.perf_counter() - start) * 1000
                     self.ui.statusBar.clearMessage()
                     self.ui.statusBar.showMessage(
@@ -1545,8 +1541,13 @@ class MainWindow(QMainWindow):
 
                 elif sender == self.ui.actionGray2RGB:
                     process += 'Gray->RGB'
+
+                    def _gray2rgb(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
+                        dst = gray2rgb(src)
+                        return dst, list()
+
                     start = time.perf_counter()
-                    self._help_apply_qimage(gray2rgb)
+                    self._help_apply_qimage(_gray2rgb)
                     elapsed_time = (time.perf_counter() - start) * 1000
                     self.ui.statusBar.clearMessage()
                     self.ui.statusBar.showMessage(
@@ -1554,8 +1555,13 @@ class MainWindow(QMainWindow):
 
                 elif sender == self.ui.actionRGB2HSV:
                     process += 'RGB->HSV'
+
+                    def _rgb2hsv(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
+                        dst = rgb2hsv(src)
+                        return dst, list()
+
                     start = time.perf_counter()
-                    self._help_apply_qimage(rgb2hsv)
+                    self._help_apply_qimage(_rgb2hsv)
                     elapsed_time = (time.perf_counter() - start) * 1000
                     self.ui.statusBar.clearMessage()
                     self.ui.statusBar.showMessage(
@@ -1563,8 +1569,13 @@ class MainWindow(QMainWindow):
 
                 elif sender == self.ui.actionHSV2RGB:
                     process += 'HSV->RGB'
+
+                    def _hsv2rgb(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
+                        dst = hsv2rgb(src)
+                        return dst, list()
+
                     start = time.perf_counter()
-                    self._help_apply_qimage(hsv2rgb)
+                    self._help_apply_qimage(_hsv2rgb)
                     elapsed_time = (time.perf_counter() - start) * 1000
                     self.ui.statusBar.clearMessage()
                     self.ui.statusBar.showMessage(
@@ -1723,30 +1734,38 @@ class MainWindow(QMainWindow):
                 sender = self.sender()
                 if sender == self.ui.actionVertical_Flip:
                     process = "Vertical Flip"
-                    def v_flip(src:np.ndarray) -> np.ndarray:
+
+                    def v_flip(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = np.copy(src[::-1]) # Vertical Flip
-                        return dst
+                        return dst, list()
+
                     img_proc_func = v_flip
 
                 elif sender == self.ui.actionHorizontal_Flip:
                     process = "Horizontal Flip"
-                    def h_flip(src:np.ndarray) -> np.ndarray:
+
+                    def h_flip(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = src[:, ::-1]  # Horizontal Flip
-                        return dst
+                        return dst, list()
+
                     img_proc_func = h_flip
 
                 elif sender == self.ui.actionRotate_90_Degree_Left:
                     process = "Rotate_90_Degree_Left"
-                    def rot_90deg_left(src:np.ndarray) -> np.ndarray:
+
+                    def rot_90deg_left(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = ndimage.rotate(src, angle=90, mode='reflect')
-                        return dst
+                        return dst, list()
+
                     img_proc_func = rot_90deg_left
 
                 elif sender == self.ui.actionRotate_90_Degree_Right:
                     process = "Rotate_90_Degree_Right"
-                    def rot_90deg_right(src:np.ndarray) -> np.ndarray:
+
+                    def rot_90deg_right(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                         dst = ndimage.rotate(src, angle=-90, mode='reflect')
-                        return dst
+                        return dst, list()
+
                     img_proc_func = rot_90deg_right
 
                 elif sender == self.ui.actionRotate:

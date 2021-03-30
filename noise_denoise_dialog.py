@@ -8,7 +8,17 @@ import sys
 import pathlib
 import math
 import time
-from typing import (List, Dict, Tuple, Union, Callable, Any, TypeVar, NoReturn, Generic)
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    TypeVar,
+    NoReturn,
+    Generic
+)
 
 # サードパーティ
 import numpy as np
@@ -18,11 +28,28 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
-
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -33,9 +60,10 @@ sys.path.append(module_dir)
 
 from ui.ui_NoiseDenoiseDialog import Ui_NoiseDenoiseDialog
 from image_window import ImageWindow
-from module.utils import (new_serial_number_filename)
+from module.utils import new_serial_number_filename
 from module.qt_module.qt_def import *
 from module.imgproc.noise_denoise import *
+
 
 class NoiseDenoiseDialog(QDialog):
 
@@ -101,10 +129,10 @@ class NoiseDenoiseDialog(QDialog):
         lower = self.ui.sBox_Uniform_Lower.value()
         upper = self.ui.sBox_Uniform_Upper.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             random_state = np.random.RandomState(None)
             dst = noise_uniform(src, lower, upper, random_state)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -124,10 +152,10 @@ class NoiseDenoiseDialog(QDialog):
         mean = self.ui.dsBox_Standard_Mean.value()
         sigma = self.ui.dsBox_Standard_Sigma.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             random_state = np.random.RandomState(None)
             dst = noise_standard(src, mean, sigma, random_state)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -139,7 +167,7 @@ class NoiseDenoiseDialog(QDialog):
     @Slot()
     def _apply_denoise_rof(self):
         """
-        ROF Denoise処理
+        Rudin-Osher-Fatemi(ROF) Denoise処理
         :return:
         """
         process = "Rudin-Osher-Fatemi(ROF) Denoise"
@@ -147,9 +175,9 @@ class NoiseDenoiseDialog(QDialog):
         step_tau = self.ui.dsBox_ROF_Step.value()
         tv_weight = self.ui.sBox_ROF_Norm_Weight.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst, _ = denoise_rof(src, src, tolerance=tolerance, step=step_tau, tv_weight=tv_weight)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -157,3 +185,4 @@ class NoiseDenoiseDialog(QDialog):
         else:
             """File Mode"""
             help_process_file_mode(self, img_proc_func, process)
+

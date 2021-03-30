@@ -114,9 +114,10 @@ class BlurDialog(QDialog):
         k_y = self.ui.sBox_Gaussian_k_y.value()
         std_x = self.ui.dsBox_Gaussian_std_x.value()
         std_y = self.ui.dsBox_Gaussian_std_y.value()
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = blur.gaussian_blur(src, kernel=(k_x, k_y), sigma=(std_x, std_y))
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -134,9 +135,10 @@ class BlurDialog(QDialog):
         """
         process = "Median Blur"
         k_xy = self.ui.sBox_Median_k_xy.value()
-        def img_proc_func(src:np.ndarray) -> np.ndarray:
+
+        def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = blur.median_blur(src, kernel=k_xy)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -156,9 +158,10 @@ class BlurDialog(QDialog):
         k_xy = self.ui.sBox_Bilateral_k_xy.value()
         sigma_space = self.ui.dsBox_Bilateral_std_space.value()
         sigma_lum = self.ui.dsBox_Bilateral_std_luminace.value()
-        def img_proc_func(src:np.ndarray) -> np.ndarray:
+
+        def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = blur.bilateral_blur(src, kernel=k_xy, sigma_space=sigma_space, sigma_luminance=sigma_lum)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -176,9 +179,10 @@ class BlurDialog(QDialog):
         process = "Mosaic Blur"
         blck_x = self.ui.sBox_Mosaic_block_x.value()
         blck_y = self.ui.sBox_Mosaic_block_y.value()
-        def img_proc_func(src:np.ndarray) -> np.ndarray:
+
+        def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = blur.mosaic_blur(src, block=(blck_x, blck_y))
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""

@@ -8,8 +8,15 @@ import sys
 import pathlib
 import math
 import time
-from typing import (List, Dict, Tuple, Union, Callable, Any, NewType)
-
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NewType
+)
 
 # サードパーティ
 import numpy as np
@@ -19,10 +26,28 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -33,7 +58,7 @@ sys.path.append(module_dir)
 
 from ui.ui_EdgeDetectorDialog import Ui_EdgeDetectorDialog
 from image_window import ImageWindow
-from module.utils import (new_serial_number_filename)
+from module.utils import new_serial_number_filename
 from module.qt_module.qt_def import *
 from module.imgproc.edge_detector import *
 
@@ -119,14 +144,14 @@ class EdgeDetectorDialog(QDialog):
         process = "Differential Filter"
         direction = self.ui.cBox_Differential_Direction.currentText()
 
-        def img_proc_func(src:np.ndarray) -> np.ndarray:
+        def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = differential_filter(src, direction)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -144,14 +169,14 @@ class EdgeDetectorDialog(QDialog):
         process = "Prewitt Filter"
         direction = self.ui.cBox_Prewitt_Direction.currentText()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = prewitt_filter(src, direction)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -169,14 +194,14 @@ class EdgeDetectorDialog(QDialog):
         process = "Sobel Filter"
         direction = self.ui.cBox_Sobel_Direction.currentText()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = sobel_filter(src, direction)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -194,14 +219,14 @@ class EdgeDetectorDialog(QDialog):
         process = "Laplacian Filter"
         k_xy = self.ui.sBox_Laplacian_kxy.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = laplacian_filter(src, ksize=k_xy)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -220,14 +245,14 @@ class EdgeDetectorDialog(QDialog):
         k_xy = self.ui.sBox_LOG_kxy.value()
         sigma = self.ui.dsBox_LOG_Sigma.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = log_filter(src, ksize=k_xy, sigma=sigma)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -247,14 +272,14 @@ class EdgeDetectorDialog(QDialog):
         k = self.ui.dsBox_DOG_k.value()
         gamma = self.ui.dsBox_DOG_gamma.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = dog_filter(src, ksize=k_xy, sigma=sigma, k=k, gamma=gamma)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -277,14 +302,14 @@ class EdgeDetectorDialog(QDialog):
         phi = self.ui.dsBox_XDOG_phi.value()
         eps = self.ui.dsBox_XDOG_eps.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = xdog_filter(src, ksize=k_xy, p=p, phi=phi, eps=eps, sigma=sigma, k=k)
             lum_min = np.min(dst)
             lum_max = np.max(dst)
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -303,7 +328,7 @@ class EdgeDetectorDialog(QDialog):
         k_xy = self.ui.sBox_Zero_Crossing_kxy.value()
         sigma = self.ui.dsBox_Zero_Crossing_Sigma.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = log_filter(src, ksize=k_xy, sigma=sigma)
             dst = zero_crossing(dst) # ゼロ点交差
             lum_min = np.min(dst)
@@ -311,7 +336,7 @@ class EdgeDetectorDialog(QDialog):
             dst = (dst - lum_min) / (lum_max - lum_min)
             dst *= 255
             dst = np.clip(a=dst, a_min=0, a_max=255).astype(np.uint8)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -330,9 +355,9 @@ class EdgeDetectorDialog(QDialog):
         hys_upper = self.ui.sBox_Canny_Hysterisis_Upper.value()
         hys_lower = self.ui.sBox_Canny_Hysterisis_Lower.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = canny(src, hys_upper, hys_lower)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""

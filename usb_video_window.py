@@ -6,16 +6,43 @@ import os
 import sys
 import time
 import datetime
-from typing import (Dict, List, Tuple, Union, Callable, Any, NewType)
+from typing import (
+    Dict,
+    List,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NewType,
+    Generic
+)
 
 # サードパーティ
 import numpy as np
 import qimage2ndarray as qn
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 from PySide2.QtMultimedia import QCameraInfo
 
 # 自作
@@ -28,7 +55,7 @@ sys.path.append(module_dir)
 from ui.ui_USBVideoWindow import Ui_USBVideoWindow
 from image_window import ImageWindow
 from module.qt_module.qt_def import (ndarray2qimage, adjust_viewport)
-from module.utils import (new_serial_number_filename)
+from module.utils import new_serial_number_filename
 
 from module.qt_module.qt_camera_controller_threading import QtCameraController
 from module.qt_module.qt_usb_camera_frame_reader import QtUSBCameraFrameReader
@@ -36,6 +63,7 @@ from module.camera_frame_reader import USBCameraFrameReader
 from module.camera_controller_threading import CameraController
 from module.pickle_video_capture import PickleUSBVideoCapture
 from module.camera_controller_processing import ProcessCameraController
+
 
 # USBカメラのフレーム画像(動画)表示用ウィンドウ
 class USBVideoWindow(ImageWindow):
@@ -68,15 +96,12 @@ class USBVideoWindow(ImageWindow):
         self._ui_connection()
         self._custom_connection()
 
-
     def _toolbar_connection(self):
         """
         ToolBarに関するSignal/Slotの接続
         :return:
         """
         self.ui.toolBar.toggleViewAction().setEnabled(False) # 右クリックでツールバーを非表示にできないようにする
-
-
 
     def _menubar_connection(self):
         """

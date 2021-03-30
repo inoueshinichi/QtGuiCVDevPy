@@ -8,8 +8,15 @@ import sys
 import pathlib
 import math
 import time
-from typing import (List, Dict, Tuple, Union, Callable, Any, NewType)
-
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NewType
+)
 
 # サードパーティ
 import numpy as np
@@ -19,10 +26,28 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -33,7 +58,7 @@ sys.path.append(module_dir)
 
 from ui.ui_HistogramDialog import Ui_HistogramDialog
 from image_window import ImageWindow
-from module.utils import (new_serial_number_filename)
+from module.utils import new_serial_number_filename
 from module.qt_module.qt_def import *
 from module.imgproc.histgram import *
 
@@ -93,9 +118,9 @@ class HistogramDialog(QDialog):
         """
         process = "Flat Hist"
 
-        def img_proc_func(src:np.ndarray) -> np.ndarray:
+        def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = flat_histogram(src)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""

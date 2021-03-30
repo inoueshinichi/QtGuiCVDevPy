@@ -20,7 +20,6 @@ from typing import (
     NoReturn
 )
 
-
 # サードパーティ
 import numpy as np
 import scipy as sp
@@ -29,10 +28,28 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -45,6 +62,7 @@ from ui.ui_ShadingDialog import Ui_ShadingDialog
 from module.qt_module import qt_def
 from module.imgproc import shading
 from module.imgproc import blur
+
 
 class ShadingDialog(QDialog):
 
@@ -100,7 +118,6 @@ class ShadingDialog(QDialog):
         """
         pass
 
-
     # @Slot()
     def _check_baseimg(self):
         """
@@ -116,18 +133,22 @@ class ShadingDialog(QDialog):
             k_y = self.ui.sBox_Shading_Gaussian_k_y.value()
             std_x = self.ui.dsBox_Shading_Gaussian_std_x.value()
             std_y = self.ui.dsBox_Shading_Gaussian_std_y.value()
-            def img_proc_func(src:np.ndarray) -> np.ndarray:
+
+            def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
                 dst = blur.gaussian_blur(src, (k_x, k_y), (std_x, std_y))
-                return dst
+                return dst, list()
+
             processing_func = img_proc_func
 
-        else: # Median Blur
+        else:
+            # Median Blur
             k_xy = self.ui.sBox_Shadng_Median_k_xy.value()
-            def img_proc_func(src:np.ndarray) -> np.ndarray:
-                dst = blur.median_blur(src, k_xy)
-                return dst
-            processing_func = img_proc_func
 
+            def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
+                dst = blur.median_blur(src, k_xy)
+                return dst, list()
+
+            processing_func = img_proc_func
 
         img_win = self.main_win.last_active_img_win
         if img_win:
@@ -185,28 +206,30 @@ class ShadingDialog(QDialog):
             std_x = self.ui.dsBox_Shading_Gaussian_std_x.value()
             std_y = self.ui.dsBox_Shading_Gaussian_std_y.value()
 
-            def img_proc_func(src: np.ndarray) -> np.ndarray:
+            def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
                 dst = blur.gaussian_blur(src, (k_x, k_y), (std_x, std_y))
-                return dst
+                return dst, list()
 
             processing_func = img_proc_func
 
-        else:  # Median Blur
+        else:
+            # Median Blur
             k_xy = self.ui.sBox_Shadng_Median_k_xy.value()
 
-            def img_proc_func(src: np.ndarray) -> np.ndarray:
+            def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
                 dst = blur.median_blur(src, k_xy)
-                return dst
+                return dst, list()
 
             processing_func = img_proc_func
 
         # Shading Correction
         gain = self.ui.dsBox_Shading_Gain.value()
-        def img_proc_func(src:np.ndarray) -> np.ndarray:
+
+        def img_proc_func(src:np.ndarray) -> Union[np.ndarray, List[Any]]:
             base = processing_func(src.copy())
             master = src
             dst = shading.shading_correction(master, base, gain)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""

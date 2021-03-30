@@ -6,16 +6,43 @@ import os
 import sys
 import time
 import datetime
-from typing import (Dict, List, Tuple, Union, Callable, Any, NewType)
+from typing import (
+    Dict,
+    List,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NewType,
+    List
+)
 
 # サードパーティ
 import numpy as np
 import qimage2ndarray as qn
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 from PySide2.QtMultimedia import QCameraInfo
 
 # 自作
@@ -27,13 +54,14 @@ sys.path.append(module_dir)
 
 from ui.ui_IDSVideoWindow import Ui_IDSVideoWindow
 from image_window import ImageWindow
-from module.qt_module.qt_def import (ndarray2qimage, adjust_viewport)
-from module.utils import (new_serial_number_filename)
+from module.qt_module.qt_def import *
+from module.utils import new_serial_number_filename
 
 from module.camera_frame_reader import IDSCameraFrameReader
 from module.camera_controller_threading import CameraController
 from module.pickle_video_capture import PickleIDSVideoCapture
 from module.camera_controller_processing import ProcessCameraController
+
 
 # IDSカメラのフレーム画像(動画)表示用ウィンドウ
 class IDSVideoWindow(ImageWindow):
@@ -72,8 +100,6 @@ class IDSVideoWindow(ImageWindow):
         :return:
         """
         self.ui.toolBar.toggleViewAction().setEnabled(False) # 右クリックでツールバーを非表示にできないようにする
-
-
 
     def _menubar_connection(self):
         """
@@ -201,7 +227,6 @@ class IDSVideoWindow(ImageWindow):
         else:
             QMessageBox.warning(self, "Capture Initialization", "キャプチャデバイスの初期化に失敗しました.", QMessageBox.Ok)
 
-
     @Slot()
     def _stop_capture(self):
         """
@@ -224,7 +249,6 @@ class IDSVideoWindow(ImageWindow):
             self.draw_timer.stop()
             self.draw_timer.timeout.disconnect()
             print("Stop draw timer.")
-
 
     @Slot()
     def _search_device_list(self):

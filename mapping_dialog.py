@@ -28,10 +28,28 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -102,9 +120,10 @@ class MappingDialog(QDialog):
         """
         process = "Gamma Correction"
         gamma_gain = self.ui.sBox_Gamma_Gain.value()
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = mapping.gamma_mapping(src, gamma=gamma_gain)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -112,3 +131,5 @@ class MappingDialog(QDialog):
         else:
             """File Mode"""
             qt_def.help_process_file_mode(self, img_proc_func, process)
+
+

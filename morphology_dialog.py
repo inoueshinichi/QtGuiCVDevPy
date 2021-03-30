@@ -8,7 +8,16 @@ import sys
 import pathlib
 import math
 import time
-from typing import (List, Dict, Tuple, Union, Callable, Any, NewType)
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NewType,
+    Generic
+)
 
 # サードパーティ
 import numpy as np
@@ -18,8 +27,18 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
 from PySide2.QtWidgets import (
     QApplication,
@@ -41,10 +60,9 @@ sys.path.append(module_dir)
 
 from ui.ui_MorphologyDialog import Ui_MorphologyDialog
 from image_window import ImageWindow
-from module.utils import (new_serial_number_filename)
+from module.utils import new_serial_number_filename
 from module.qt_module.qt_def import *
 from module.imgproc.morphology import *
-
 
 
 class MorphologyDialog(QDialog):
@@ -117,9 +135,9 @@ class MorphologyDialog(QDialog):
         k_xy = self.ui.sBox_Dilation_k_xy.value()
         iter_num = self.ui.sBox_Dilation_iter.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = dilation(src, ksize=k_xy, iterations=iter_num)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -138,9 +156,9 @@ class MorphologyDialog(QDialog):
         k_xy = self.ui.sBox_Erosion_k_xy.value()
         iter_num = self.ui.sBox_Erosion_iter.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = erosion(src, ksize=k_xy, iterations=iter_num)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -159,9 +177,9 @@ class MorphologyDialog(QDialog):
         k_xy = self.ui.sBox_Opening_k_xy.value()
         iter_num = self.ui.sBox_Opening_iter.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = opening(src, ksize=k_xy, iterations=iter_num)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -180,9 +198,9 @@ class MorphologyDialog(QDialog):
         k_xy = self.ui.sBox_Closing_k_xy.value()
         iter_num = self.ui.sBox_Closing_iter.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = closing(src, ksize=k_xy, iterations=iter_num)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -201,9 +219,9 @@ class MorphologyDialog(QDialog):
         k_xy = self.ui.sBox_Outline_k_xy.value()
         iter_num = self.ui.sBox_Outline_iter.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = outline(src, ksize=k_xy, iterations=iter_num)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""

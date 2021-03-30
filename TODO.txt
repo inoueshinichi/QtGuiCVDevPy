@@ -1,4 +1,11 @@
-1) Profile, MouseCrossLineが動かなくなっている. clear関数が存在しないというエラーが出ているので、デバッグする
-2）Duplicateで画像を複製するとき、Windowサイズ, QGraphicsSceneとQGrahicsViewのアフィン変換(平行移動、スケール、回転)を引き継ぐようにする.
-3) 大津の2値化をフォルダ単位でできるようにする. その際, ファイル名と閾値の表を.csvファイルに書き出す.
-4) 輝度ムラを消すアルゴリズムが必要
+1. fft_dialogを完成させる
+2. labelingダイアログのFileモードを完成させる
+3. labelingダイアログのBBox処理を完成させる
+4. labelingダイアログのSave処理を完成させる
+5. main_windowのimage_transform -> rotation処理を完成させる
+6. main_windowのimage_transform -> translate処理を完成させる
+7. main_windowのimage_transform -> bin処理を完成させる
+8. main_windowのzoom処理を完成させる
+9. マウスホイールのズーム処理の挙動がおかしいので修正すること
+10. mapping_dialogを完成させる
+

@@ -8,7 +8,15 @@ import sys
 import pathlib
 import math
 import time
-from typing import (List, Dict, Tuple, Union, Callable, Any, NewType)
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NewType
+)
 
 
 # サードパーティ
@@ -19,10 +27,30 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
-from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
+from PySide2.QtGui import (
+    QImage
+)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -33,7 +61,7 @@ sys.path.append(module_dir)
 
 from ui.ui_BinarizeDialog import Ui_BinarizeDialog
 from image_window import ImageWindow
-from module.utils import (new_serial_number_filename)
+from module.utils import new_serial_number_filename
 from module.qt_module.qt_def import *
 from module.imgproc.binarize import *
 
@@ -121,17 +149,17 @@ class BinarizeDialog(QDialog):
         """
         process = "Otsu Binarize"
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             thresholds, dst = otsu_binarize(src)
             self.ui.lEdit_Otsu_Threshold.setText(str(thresholds))
-            return dst
+            return dst, [*thresholds] # リストのアンパック
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
             help_process_view_mode(self, img_proc_func, process)
         else:
             """File Mode"""
-            help_process_file_mode(self, img_proc_func, process)
+            help_process_file_mode(self, img_proc_func, process, "otsu_threshold.csv")
 
 
     @Slot()
