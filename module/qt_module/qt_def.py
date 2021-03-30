@@ -6,7 +6,17 @@ import sys
 import time
 import datetime
 import pathlib
-from typing import (Dict, List, Tuple, Union, Any, Callable, NewType, TypeVar)
+import shutil
+from typing import (
+    Dict,
+    List,
+    Tuple,
+    Union,
+    Any,
+    Callable,
+    NewType,
+    TypeVar
+)
 
 # サードパーティ
 import numpy as np
@@ -279,9 +289,9 @@ def help_process_view_mode(widget:QWidget, img_proc_func:Callable[[Any], Any], t
                     ymin = rect.y()
                     xmax = xmin + rect.width()
                     ymax = ymin + rect.height()
-                    img[ymin:ymax, xmin:xmax] = img_proc_func(img[ymin:ymax, xmin:xmax])
+                    img[ymin:ymax, xmin:xmax], _ = img_proc_func(img[ymin:ymax, xmin:xmax])
             else:
-                img = img_proc_func(img)
+                img, _ = img_proc_func(img)
 
             elapsed_time = (time.perf_counter() - start) * 1000
             qimage = ndarray2qimage(img)
@@ -346,7 +356,7 @@ def help_process_view_mode_2(widget:QWidget, img_proc_func:Callable[[Any], Any],
     return None, None
 
 
-def help_process_file_mode(widget:QWidget, img_proc_func:Callable[[Any], Any], text:str):
+def help_process_file_mode(widget: QWidget, img_proc_func: Callable[[Any], Any], text: str, csv_filename: str = ""):
     """
     Fileモード用のラッパー関数
     :return:
@@ -363,17 +373,40 @@ def help_process_file_mode(widget:QWidget, img_proc_func:Callable[[Any], Any], t
 
             # マルチスレッドプール(Executorオブジェクトを作成)
             with ThreadPoolExecutor(max_workers=None) as executor:
-                def _load_save_func(img_proc_func:Callable[[np.ndarray], np.ndarray], path:str, dir_output:str):
+
+                def _load_save_func(img_proc_func: Callable[[np.ndarray], np.ndarray],
+                                    path: str,
+                                    dir_output: str,
+                                    csv_filename: str):
+
                     qimage_load = QImage(path)
                     src = qimage2ndarray(qimage_load)
-                    dst = img_proc_func(src)
+                    dst, params_list = img_proc_func(src) # 処理後の画像(np.ndarray), 処理結果パラメータ[param1, param2, ...]
                     qimage_save = ndarray2qimage(dst)
-                    output_path = dir_output + os.sep + path.split(os.sep)[-1]
-                    qimage_save.save(output_path)
+                    dir_output_obj = pathlib.Path(dir_output)
+                    filename_obj = pathlib.Path(path.split(os.sep)[-1])
+                    output_path_obj = dir_output_obj / filename_obj # 連結
+                    qimage_save.save(str(output_path_obj))
+
+                    # 処理結果パラメータをcsvファイルに追加
+                    if csv_filename:
+                        record = [str(output_path_obj)] + [str(value) for value in params_list]
+                        csv_path = os.sep.join([dir_output, csv_filename])
+                        with open(csv_path, mode="a", encoding='utf-8') as f:
+                            f.write(",".join(record))
+                            f.write("\n") # 改行
+                # end: _load_save_func
+
+                # csvファイルを作成
+                if csv_filename:
+                    csv_path = os.sep.join([dir_output, csv_filename])
+                    # 新規作成(既存csvファイルは消える)
+                    with open(csv_path, mode='w', encoding='utf-8') as f:
+                        f.close()
 
                 future_list = []
                 for ext in accept_imgs:
-                    file_paths = [str(path) for path in pathlib.Path(dir_input).glob("**/*." + ext)
+                    file_paths = [str(path) for path in pathlib.Path(dir_input).glob("*." + ext)
                                   if not str(path).split(os.sep)[-1].startswith('.')]
 
                     for path in file_paths:
@@ -382,7 +415,8 @@ def help_process_file_mode(widget:QWidget, img_proc_func:Callable[[Any], Any], t
                         future = executor.submit(fn=_load_save_func,
                                                  img_proc_func=img_proc_func,
                                                  path=path,
-                                                 dir_output=dir_output)
+                                                 dir_output=dir_output,
+                                                 csv_filename=csv_filename)
                         future_list.append(future)
 
                     # 各futureの完了を待ち、結果を取得。
