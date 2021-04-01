@@ -126,7 +126,7 @@ def translate(src:np.ndarray, trans:Tuple[int,int]) -> np.ndarray:
     return dst
 
 
-def rotate(src:np.ndarray, deg:float = 0.0, center:Tuple[int,int] = (0,0), interpo:int = 1) -> np.ndarray:
+def rotate(src: np.ndarray, deg: float = 0.0, center: Tuple[int, int] = (0, 0)) -> np.ndarray:
     """
     画像の回転
     :param src:
