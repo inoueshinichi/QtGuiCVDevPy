@@ -446,15 +446,22 @@ class MainWindow(QMainWindow):
         pass
 
 
-        """ML/dl"""
+        """ML/DL"""
+        '''Annotation'''
         # Annotation: Simple-Annotation
         self.ui.actionSimple_Annotation.triggered.connect(self._act_menubar_annotation)
 
-        # dataset
+        '''Dataset'''
+        # Dataset
         self.ui.actionDataset.triggered.connect(self._act_menubar_dataset)
 
-        # dl -> Classification -> Image
-        self.ui.actionImage.triggered.connect(self._act_menubar_dl_classification_image)
+        '''DL'''
+        # DL -> Classification
+        self.ui.actionDL_Image_Classifier.triggered.connect(self._act_menubar_dl_classification)
+
+        '''ML'''
+        # ML -> Regressor
+        self.ui.actionML_Linear_Regression.triggered.connect(self._act_memubar_ml_regressor)
 
     def _ui_connection(self):
         """
@@ -1771,6 +1778,7 @@ class MainWindow(QMainWindow):
                 elif sender == self.ui.actionRotate:
                     process = "Rotate"
                     pass
+
                 elif sender == self.ui.actionTranslate:
                     process = "Translate"
                     pass
@@ -2125,13 +2133,87 @@ class MainWindow(QMainWindow):
         dataset_dialog.show()
         dataset_dialog.activateWindow()
 
-    @Slot()
-    def _act_menubar_dl_classification_image(self):
+    #@Slot()
+    def _act_menubar_dl_classification(self):
         """
-        dl -> Classification -> Image
+        DL -> Classification
         ディープラーニング用ダイアログを開く
         :return:
         """
-        dl_classification_image_dialog = DLImageRecognitionDialog(self)
-        dl_classification_image_dialog.show()
-        dl_classification_image_dialog.activateWindow()
+        sender = self.sender()
+        if sender == self.ui.actionDL_Image_Classifier:
+            dl_classification_image_dialog = DLImageRecognitionDialog(self)
+            dl_classification_image_dialog.show()
+            dl_classification_image_dialog.activateWindow()
+        elif sender == self.ui.actionDL_Object_Detection:
+            # ここに追加
+            pass
+
+    #Slot()
+    def _act_memubar_ml_classification(self):
+        """
+        ML -> Classification
+        :return:
+        """
+        sender = self.sender()
+        if sender == self.ui.actionML_SVM:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Logistic_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_KNN:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Decision_Tree:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Random_Forest:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_AdaBoost:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Gradient_Boost:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        else:
+            QMessageBox.warning(self, "Error", "例外", QMessageBox.Ok)
+
+    #Slot()
+    def _act_memubar_ml_regressor(self):
+        """
+        ML -> Regressor
+        :return:
+        """
+        sender = self.sender()
+        if sender == self.ui.actionML_Linear_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Polinominal_Linear_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Ridge_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Lasso_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Elastic_Net_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Decision_Tree_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Random_Forest_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_SVM_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        elif sender == self.ui.actionML_Gradient_Boost_Regression:
+            QMessageBox.warning(self, "Warning", "未実装", QMessageBox.Ok)
+
+        else:
+            QMessageBox.warning(self, "Error", "例外", QMessageBox.Ok)
+

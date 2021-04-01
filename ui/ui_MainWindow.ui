@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>811</width>
-    <height>305</height>
+    <height>317</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -197,7 +197,7 @@
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -352,9 +352,9 @@
      <property name="title">
       <string>Feature Extraction</string>
      </property>
-     <addaction name="actionPCA"/>
-     <addaction name="actionLDA"/>
-     <addaction name="actionSBS"/>
+     <addaction name="actionFeatureExtraction_PCA"/>
+     <addaction name="actionFeatureExtraction_LDA"/>
+     <addaction name="actionFeatureExtraction_SBS"/>
     </widget>
     <widget class="QMenu" name="menuML">
      <property name="title">
@@ -364,41 +364,41 @@
       <property name="title">
        <string>Classification</string>
       </property>
-      <addaction name="actionSVM"/>
-      <addaction name="actionLogistic_Regression"/>
-      <addaction name="actionkNN"/>
+      <addaction name="actionML_SVM"/>
+      <addaction name="actionML_Logistic_Regression"/>
+      <addaction name="actionML_KNN"/>
       <addaction name="separator"/>
-      <addaction name="actionDecision_Tree"/>
-      <addaction name="actionRandom_Forest"/>
+      <addaction name="actionML_Decision_Tree"/>
+      <addaction name="actionML_Random_Forest"/>
       <addaction name="separator"/>
-      <addaction name="actionAdaBoost"/>
-      <addaction name="actionGradient_Boost"/>
+      <addaction name="actionML_AdaBoost"/>
+      <addaction name="actionML_Gradient_Boost"/>
      </widget>
      <widget class="QMenu" name="menuRegressor">
       <property name="title">
        <string>Regressor</string>
       </property>
-      <addaction name="actionLinear_Regression"/>
-      <addaction name="actionPolinominal_Linear_Regression"/>
+      <addaction name="actionML_Linear_Regression"/>
+      <addaction name="actionML_Polinominal_Linear_Regression"/>
       <addaction name="separator"/>
-      <addaction name="actionRidge_Regression"/>
-      <addaction name="actionLasso_Regression"/>
-      <addaction name="actionElastic_Net_Regression"/>
+      <addaction name="actionML_Ridge_Regression"/>
+      <addaction name="actionML_Lasso_Regression"/>
+      <addaction name="actionML_Elastic_Net_Regression"/>
       <addaction name="separator"/>
-      <addaction name="actionDecision_Tree_Regression"/>
-      <addaction name="actionRandom_Foreset_Regression"/>
+      <addaction name="actionML_Decision_Tree_Regression"/>
+      <addaction name="actionML_Random_Foreset_Regression"/>
       <addaction name="separator"/>
-      <addaction name="actionSVM_Regression"/>
+      <addaction name="actionML_SVM_Regression"/>
       <addaction name="separator"/>
-      <addaction name="actionGradient_Boost_Regression"/>
+      <addaction name="actionML_Gradient_Boost_Regression"/>
      </widget>
      <widget class="QMenu" name="menuClustering">
       <property name="title">
        <string>Clustering</string>
       </property>
-      <addaction name="actionK_Means"/>
-      <addaction name="actionHierarchical_Clustering"/>
-      <addaction name="actionDBSCAN"/>
+      <addaction name="actionClustering_KMeans"/>
+      <addaction name="actionClustering_Hierarchical_Clustering"/>
+      <addaction name="actionClustering_DBSCAN"/>
      </widget>
      <addaction name="menuClassification"/>
      <addaction name="menuRegressor"/>
@@ -408,20 +408,14 @@
      <property name="title">
       <string>DL</string>
      </property>
-     <widget class="QMenu" name="menuClassification_2">
+     <widget class="QMenu" name="menuDL_Classification">
       <property name="title">
        <string>Classification</string>
       </property>
-      <addaction name="actionFeature_Vector"/>
-      <addaction name="actionImage"/>
-      <addaction name="separator"/>
-      <addaction name="actionObject_Detection"/>
-      <addaction name="separator"/>
-      <addaction name="actionLanguage"/>
+      <addaction name="actionDL_Image_Classifier"/>
+      <addaction name="actionDL_Object_Detection"/>
      </widget>
-     <addaction name="menuClassification_2"/>
-     <addaction name="actionRegressior"/>
-     <addaction name="actionGenerative"/>
+     <addaction name="menuDL_Classification"/>
     </widget>
     <addaction name="menu"/>
     <addaction name="separator"/>
@@ -509,43 +503,15 @@
     <addaction name="menuKeyPoint"/>
     <addaction name="menuDescriptor"/>
     <addaction name="separator"/>
-    <addaction name="actionMatching"/>
+    <addaction name="actionKeyPoint_Matching"/>
    </widget>
    <widget class="QMenu" name="menuDetector">
     <property name="title">
      <string>Detector</string>
     </property>
-    <widget class="QMenu" name="menuHough">
-     <property name="title">
-      <string>Hough</string>
-     </property>
-     <addaction name="actionHough_Line"/>
-     <addaction name="actionHough_Circle"/>
-    </widget>
-    <widget class="QMenu" name="menuTemplate_Matching">
-     <property name="title">
-      <string>Template Matching</string>
-     </property>
-     <addaction name="actionTM_SSD"/>
-     <addaction name="actionTM_NSSD"/>
-     <addaction name="separator"/>
-     <addaction name="action_TM_CCORR"/>
-     <addaction name="actionTM_NCCORR"/>
-     <addaction name="separator"/>
-     <addaction name="actionTM_CCOEFF"/>
-     <addaction name="actionTM_NCCOEFF"/>
-    </widget>
-    <widget class="QMenu" name="menuFitting">
-     <property name="title">
-      <string>Fitting</string>
-     </property>
-     <addaction name="actionFitting_Line"/>
-     <addaction name="actionFitting_Curve"/>
-     <addaction name="actionFitting_Ellipse"/>
-    </widget>
-    <addaction name="menuHough"/>
-    <addaction name="menuTemplate_Matching"/>
-    <addaction name="menuFitting"/>
+    <addaction name="actionHough"/>
+    <addaction name="actionTemplate_Matching"/>
+    <addaction name="actionFigure_Fitting"/>
    </widget>
    <widget class="QMenu" name="menuMition">
     <property name="title">
@@ -927,34 +893,6 @@
     <string>Angle Measure</string>
    </property>
   </action>
-  <action name="actionTime_Squence">
-   <property name="text">
-    <string>Time Squence</string>
-   </property>
-  </action>
-  <action name="actionFeatures">
-   <property name="text">
-    <string>Features</string>
-   </property>
-  </action>
-  <action name="actionSimple_Classifier_Model">
-   <property name="text">
-    <string>Simple Classifier Model</string>
-   </property>
-  </action>
-  <action name="actionObject_Detection_Model">
-   <property name="text">
-    <string>Object Detection Model</string>
-   </property>
-  </action>
-  <action name="actionGAN">
-   <property name="text">
-    <string>GAN</string>
-   </property>
-   <property name="toolTip">
-    <string>Generate Model</string>
-   </property>
-  </action>
   <action name="actionDataset">
    <property name="text">
     <string>Dataset</string>
@@ -1112,24 +1050,14 @@
     <string>LBP Descriptor</string>
    </property>
   </action>
-  <action name="actionMatching">
+  <action name="actionKeyPoint_Matching">
    <property name="text">
-    <string>Matching</string>
+    <string>KeyPoint Matching</string>
    </property>
   </action>
   <action name="actionKLT_Corner">
    <property name="text">
     <string>KLT Corner</string>
-   </property>
-  </action>
-  <action name="actionHough_Line">
-   <property name="text">
-    <string>Hough Line</string>
-   </property>
-  </action>
-  <action name="actionHough_Circle">
-   <property name="text">
-    <string>Hough Circle</string>
    </property>
   </action>
   <action name="actionOptical_Flow">
@@ -1192,107 +1120,107 @@
     <string>Morphology</string>
    </property>
   </action>
-  <action name="actionLogistic_Regression">
+  <action name="actionML_Logistic_Regression">
    <property name="text">
     <string>Logistic Regression</string>
    </property>
   </action>
-  <action name="actionkNN">
+  <action name="actionML_KNN">
    <property name="text">
     <string>kNN</string>
    </property>
   </action>
-  <action name="actionLinear_Regression">
+  <action name="actionML_Linear_Regression">
    <property name="text">
     <string>Linear Regression</string>
    </property>
   </action>
-  <action name="actionRidge_Regression">
+  <action name="actionML_Ridge_Regression">
    <property name="text">
     <string>Ridge Regression</string>
    </property>
   </action>
-  <action name="actionLasso_Regression">
+  <action name="actionML_Lasso_Regression">
    <property name="text">
     <string>Lasso Regression</string>
    </property>
   </action>
-  <action name="actionElastic_Net_Regression">
+  <action name="actionML_Elastic_Net_Regression">
    <property name="text">
     <string>Elastic Net Regression</string>
    </property>
   </action>
-  <action name="actionPolinominal_Linear_Regression">
+  <action name="actionML_Polinominal_Linear_Regression">
    <property name="text">
     <string>Polinominal Linear Regression</string>
    </property>
   </action>
-  <action name="actionDecision_Tree_Regression">
+  <action name="actionML_Decision_Tree_Regression">
    <property name="text">
     <string>Decision Tree Regression</string>
    </property>
   </action>
-  <action name="actionRandom_Foreset_Regression">
+  <action name="actionML_Random_Foreset_Regression">
    <property name="text">
     <string>Random Foreset Regression</string>
    </property>
   </action>
-  <action name="actionSVM_Regression">
+  <action name="actionML_SVM_Regression">
    <property name="text">
     <string>SVM Regression</string>
    </property>
   </action>
-  <action name="actionGradient_Boost_Regression">
+  <action name="actionML_Gradient_Boost_Regression">
    <property name="text">
     <string>Gradient Boost Regression</string>
    </property>
   </action>
-  <action name="actionGradient_Boost">
+  <action name="actionML_Gradient_Boost">
    <property name="text">
     <string>Gradient Boost</string>
    </property>
   </action>
-  <action name="actionDecision_Tree">
+  <action name="actionML_Decision_Tree">
    <property name="text">
     <string>Decision Tree</string>
    </property>
   </action>
-  <action name="actionRandom_Forest">
+  <action name="actionML_Random_Forest">
    <property name="text">
     <string>Random Forest</string>
    </property>
   </action>
-  <action name="actionAdaBoost">
+  <action name="actionML_AdaBoost">
    <property name="text">
     <string>AdaBoost</string>
    </property>
   </action>
-  <action name="actionK_Means">
+  <action name="actionClustering_KMeans">
    <property name="text">
     <string>K Means</string>
    </property>
   </action>
-  <action name="actionHierarchical_Clustering">
+  <action name="actionClustering_Hierarchical_Clustering">
    <property name="text">
     <string>Hierarchical Clustering</string>
    </property>
   </action>
-  <action name="actionDBSCAN">
+  <action name="actionClustering_DBSCAN">
    <property name="text">
     <string>DBSCAN</string>
    </property>
   </action>
-  <action name="actionPCA">
+  <action name="actionFeatureExtraction_PCA">
    <property name="text">
     <string>PCA</string>
    </property>
   </action>
-  <action name="actionLDA">
+  <action name="actionFeatureExtraction_LDA">
    <property name="text">
     <string>LDA</string>
    </property>
   </action>
-  <action name="actionSBS">
+  <action name="actionFeatureExtraction_SBS">
    <property name="text">
     <string>SBS</string>
    </property>
@@ -1415,54 +1343,6 @@
     <string>Ellipse</string>
    </property>
   </action>
-  <action name="actionTM_SSD">
-   <property name="text">
-    <string>SSD</string>
-   </property>
-   <property name="toolTip">
-    <string>Sum of Square Difference</string>
-   </property>
-  </action>
-  <action name="actionTM_NSSD">
-   <property name="text">
-    <string>NSSD</string>
-   </property>
-   <property name="toolTip">
-    <string>Normalized Sum of Square Difference</string>
-   </property>
-  </action>
-  <action name="action_TM_CCORR">
-   <property name="text">
-    <string>CCORR</string>
-   </property>
-   <property name="toolTip">
-    <string>Cross Correlation</string>
-   </property>
-  </action>
-  <action name="actionTM_NCCORR">
-   <property name="text">
-    <string>NCCORR</string>
-   </property>
-   <property name="toolTip">
-    <string>Normalized Cross Correlation</string>
-   </property>
-  </action>
-  <action name="actionTM_CCOEFF">
-   <property name="text">
-    <string>CCOEFF</string>
-   </property>
-   <property name="toolTip">
-    <string>Cross Coefficient</string>
-   </property>
-  </action>
-  <action name="actionTM_NCCOEFF">
-   <property name="text">
-    <string>NCCOEFF</string>
-   </property>
-   <property name="toolTip">
-    <string>Normalized Cross Coefficient</string>
-   </property>
-  </action>
   <action name="actionLine">
    <property name="checkable">
     <bool>true</bool>
@@ -1471,7 +1351,7 @@
     <string>Line</string>
    </property>
   </action>
-  <action name="actionSVM">
+  <action name="actionML_SVM">
    <property name="text">
     <string>SVM</string>
    </property>
@@ -1486,37 +1366,9 @@
     <string>ROI Annotation</string>
    </property>
   </action>
-  <action name="actionRegressior">
-   <property name="text">
-    <string>Regressior</string>
-   </property>
-  </action>
-  <action name="actionFeature_Vector">
-   <property name="text">
-    <string>Feature Vector</string>
-   </property>
-  </action>
-  <action name="actionImage">
-   <property name="text">
-    <string>Image</string>
-   </property>
-  </action>
-  <action name="actionObject_Detection">
+  <action name="actionDL_Object_Detection">
    <property name="text">
     <string>Object Detection</string>
-   </property>
-  </action>
-  <action name="actionLanguage">
-   <property name="text">
-    <string>Language</string>
-   </property>
-   <property name="toolTip">
-    <string>Language</string>
-   </property>
-  </action>
-  <action name="actionGenerative">
-   <property name="text">
-    <string>Generative</string>
    </property>
   </action>
   <action name="actionVideo_Make">
@@ -1529,27 +1381,32 @@
     <string>Video Open</string>
    </property>
   </action>
-  <action name="actionFitting_Line">
-   <property name="text">
-    <string>Fitting Line</string>
-   </property>
-  </action>
-  <action name="actionFitting_Curve">
-   <property name="text">
-    <string>Fitting Curve</string>
-   </property>
-  </action>
-  <action name="actionFitting_Ellipse">
-   <property name="text">
-    <string>Fitting Ellipse</string>
-   </property>
-  </action>
   <action name="actionShading">
    <property name="text">
     <string>Shading</string>
    </property>
    <property name="toolTip">
     <string>Shading Correction</string>
+   </property>
+  </action>
+  <action name="actionTemplate_Matching">
+   <property name="text">
+    <string>Template Matching</string>
+   </property>
+  </action>
+  <action name="actionFigure_Fitting">
+   <property name="text">
+    <string>Figure Fitting</string>
+   </property>
+  </action>
+  <action name="actionHough">
+   <property name="text">
+    <string>Hough</string>
+   </property>
+  </action>
+  <action name="actionDL_Image_Classifier">
+   <property name="text">
+    <string>Image Classifier</string>
    </property>
   </action>
  </widget>
