@@ -275,9 +275,7 @@
      <addaction name="actionHorizontal_Flip"/>
      <addaction name="actionRotate_90_Degree_Right"/>
      <addaction name="actionRotate_90_Degree_Left"/>
-     <addaction name="actionRotate"/>
-     <addaction name="actionTranslate"/>
-     <addaction name="actionBin"/>
+     <addaction name="actionAffine"/>
     </widget>
     <widget class="QMenu" name="menuZoom">
      <property name="title">
@@ -805,21 +803,6 @@
   <action name="actionRotate_90_Degree_Left">
    <property name="text">
     <string>Rotate 90 Degree Left</string>
-   </property>
-  </action>
-  <action name="actionRotate">
-   <property name="text">
-    <string>Rotate</string>
-   </property>
-  </action>
-  <action name="actionTranslate">
-   <property name="text">
-    <string>Translate</string>
-   </property>
-  </action>
-  <action name="actionBin">
-   <property name="text">
-    <string>Bin</string>
    </property>
   </action>
   <action name="actionHSV2RGB">
@@ -1407,6 +1390,11 @@
   <action name="actionDL_Image_Classifier">
    <property name="text">
     <string>Image Classifier</string>
+   </property>
+  </action>
+  <action name="actionAffine">
+   <property name="text">
+    <string>Affine</string>
    </property>
   </action>
  </widget>
