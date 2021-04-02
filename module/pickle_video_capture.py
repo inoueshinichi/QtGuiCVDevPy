@@ -4,8 +4,19 @@ Pickle化可能なI/Oキャプチャクラス
 """
 
 # 標準
+import ctypes
 import time
-from typing import (List, Dict, Tuple, Union, Callable, Any, NoReturn, TypeVar, Generic)
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NoReturn,
+    TypeVar,
+    Generic
+)
 import abc
 import functools
 import inspect
@@ -20,6 +31,7 @@ from pyueye import ueye
 
 class PickleVideoCapture(metaclass=abc.ABCMeta):
 
+    # 派生クラスにインターフェース(関数API)を強制させるために必要なおまじない.
     @staticmethod
     def overrides(klass):
         def check_super(method) -> Any:
@@ -33,9 +45,12 @@ class PickleVideoCapture(metaclass=abc.ABCMeta):
 
         return wrapper
 
-    def __init__(self, device_id:Union[int, None]=None, delay:Union[int, None]=None):
-        self.device_id:Union[int, None] = device_id
-        self.delay:Union[int, None] = delay
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None):
+
+        self.device_id: Union[int, None] = device_id
+        self.delay: Union[int, None] = delay
         self.height: Union[int, None] = None
         self.width: Union[int, None] = None
         self.channels: Union[int, None] = None
@@ -43,16 +58,20 @@ class PickleVideoCapture(metaclass=abc.ABCMeta):
     def __getstate__(self) -> Tuple[int, int]:
         """
         親プロセス側でPickle化されるオブジェクトを指定する
+        https://qiita.com/fumitoh/items/6ae34b7c63cb419a7b48
+        https://qiita.com/s-wakaba/items/f15b4aa579c018880758
         :return:
         """
         # 一つのデバイスオブジェクトを親プロセスと子プロセスで共有できないため
-        # 子プロセスにPickleかしたPickleUSBVideoCaptureを引き渡すときに，親プロセス側でrelease()する.
+        # 子プロセスにPickleしたPickleUSBVideoCaptureを引き渡すときに，親プロセス側でrelease()する.
         self.release()
         return self.device_id, self.delay
 
     def __setstate__(self, state) -> NoReturn:
         """
         子プロセス側でPickleデータからメモリオブジェクトに解凍
+        https://qiita.com/fumitoh/items/6ae34b7c63cb419a7b48
+        https://qiita.com/s-wakaba/items/f15b4aa579c018880758
         :param state: Pickleデータ
         :return:
         """
@@ -87,21 +106,24 @@ class PickleVideoCapture(metaclass=abc.ABCMeta):
     def get_delay(self) -> Union[int, None]:
         return self.delay
 
-    def set_device_id(self, device_id:int) -> NoReturn:
+    def set_device_id(self, device_id: int) -> NoReturn:
         self.device_id = device_id
 
-    def set_delay(self, delay:int) -> NoReturn:
+    def set_delay(self, delay: int) -> NoReturn:
         self.delay = delay
 
 
 # USBカメラ専用のキャプチャデバイスクラス
 class PickleUSBVideoCapture(PickleVideoCapture):
 
-    def __init__(self, device_id:Union[int, None]=None, delay:Union[int, None]=None):
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None):
+
         super(PickleUSBVideoCapture, self).__init__(device_id, delay)
 
         # デバイス(OpencvのVideoCaputure)
-        self.cap:Union[cv2.VideoCapture, None] = None
+        self.cap: Union[cv2.VideoCapture, None] = None
 
         if (device_id is not None) and (delay is not None):
             self.generate_device()
@@ -133,11 +155,13 @@ class PickleUSBVideoCapture(PickleVideoCapture):
             return False
 
 
-
 # IDSカメラ専用のキャプチャデバイスクラス
 class PickleIDSVideoCapture(PickleVideoCapture):
 
-    def __init__(self, device_id:Union[int, None]=None, delay:Union[int, None]=None, ):
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None):
+
         super(PickleIDSVideoCapture, self).__init__(device_id, delay)
 
         # IDS-UIカメラのパラメータ
@@ -149,8 +173,8 @@ class PickleIDSVideoCapture(PickleVideoCapture):
         self.rect_aoi:Any = None  # ROI
         self.pitch: Union[int, None] = None
         self.nbits_per_pixel: Union[int, None] = None  # 24: bits per pixel for color mode; take 8 bits per pixel for monochrome
-        self.channels: Union[int, None] = None  # 3: channels for color mode(RGB); take 1 channel for monochrome
-        self.ncolor_mode: Union[str, None] = None  # Y8/RGB16/RGB24/REG32
+        self.channels: Union[int, None] = None         # 3: channels for color mode(RGB); take 1 channel for monochrome
+        self.ncolor_mode: Union[str, None] = None      # Y8/RGB16/RGB24/REG32
         self.bytes_per_pixel: Union[int, None] = None
 
         if (device_id is not None) and (delay is not None):
@@ -214,16 +238,16 @@ class PickleIDSVideoCapture(PickleVideoCapture):
             return False
 
         # IDSカメラのパラメータ初期化
-        self.camera_handler = ueye.HIDS(self.device_id)
-        self.sensor_info = ueye.SENSORINFO()
-        self.camera_info = ueye.CAMINFO()
-        self.pc_image_memory = ueye.c_mem_p()  # ポインタ?
-        self.memory_id = ueye.INT()
-        self.rect_aoi = ueye.IS_RECT()
-        self.pitch = ueye.INT()
-        self.ncolor_mode = ueye.INT()
-        self.nbits_per_pixel = ueye.INT(0)
-        self.bytes_per_pixel = int(self.nbits_per_pixel / 8)  # 8:1byte, 24:3bytes
+        self.camera_handler: Any = ueye.HIDS(self.device_id)
+        self.sensor_info: Any = ueye.SENSORINFO()
+        self.camera_info: Any = ueye.CAMINFO()
+        self.pc_image_memory: Any = ueye.c_mem_p()  # C言語ポインタ
+        self.memory_id: Any = ueye.INT()
+        self.rect_aoi: Any = ueye.IS_RECT()
+        self.pitch: Any = ueye.INT()
+        self.ncolor_mode: Any = ueye.INT()
+        self.nbits_per_pixel: Any = ueye.INT(0)
+        self.bytes_per_pixel: Any = int(self.nbits_per_pixel / 8)  # 8:1byte, 24:3bytes
 
         # デバイスドライバ起動 & カメラへの接続を確立
         status = ueye.is_InitCamera(self.camera_handler, None)

@@ -1,11 +1,20 @@
 """各種カメラ専用のフレーム読み取りスレッドの基底クラス
 """
 
-
 # 標準
 import time
 from collections import deque # スレッドセーフなデキュー
-from typing import (Tuple, Union, Any, NoReturn)
+from typing import (
+   List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NoReturn,
+    NewType,
+    Type
+)
 import abc
 
 import cv2
@@ -14,13 +23,13 @@ import numpy as np
 from pyueye import ueye # IDS
 import stapipy as st
 
-
 # 自作
 
 
 # カメラフレーム読み取りの基底クラス
 class CameraFrameReader(metaclass=abc.ABCMeta):
 
+    # 派生クラスにインターフェース(関数API)を強制させるために必要なおまじない.
     @staticmethod
     def overrides(klass):
         def check_super(method) -> Any:
@@ -34,7 +43,11 @@ class CameraFrameReader(metaclass=abc.ABCMeta):
 
         return wrapper
 
-    def __init__(self, device_id: Union[int, None] = None, delay: Union[int, None] = None, deque_size: int = 1):
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None,
+                 deque_size: int = 1):
+
         self.width: Union[int, None] = None
         self.height: Union[int, None] = None
         self.channels: Union[int, None] = None
@@ -86,14 +99,14 @@ class CameraFrameReader(metaclass=abc.ABCMeta):
         elapsed_time_deq = deque(maxlen=100)
 
         while self.is_running:
-            # print(">>> Current thread", threading.current_thread())
+            # print(">>> Current thread", threading.current_thread()) # デバッグ用
             start = time.perf_counter()
             try:
                 status, frame = self._capture()
                 if status:
                     if frame.ndim == 3:
                         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # RGB
-                    # print(">>> Get new frame.")
+                    # print(">>> Get new frame.") # デバッグ用
                 else:
                     print(">>> Miss new frame!")
 
@@ -102,13 +115,13 @@ class CameraFrameReader(metaclass=abc.ABCMeta):
                 # 1周期の所要時間を計算
                 end = time.perf_counter()
                 elapsed_time = (end - start) * 1000  # [ms]
-                # print(">>> Elapsed Time: {0:f} [ms]".format(elapsed_time))
+                # print(">>> Elapsed Time: {0:f} [ms]".format(elapsed_time)) # デバッグ用
 
                 # フレームレートの計算
                 elapsed_time_deq.append(elapsed_time)
                 avg_elapsed_time = sum(elapsed_time_deq) / len(elapsed_time_deq)
                 fps = 1000.0 / avg_elapsed_time
-                # print(">>> fps", fps)
+                # print(">>> fps", fps) # デバッグ用
 
                 # スレッドセーフなデキューにプッシュ
                 self.frame_pool.append((frame, fps, elapsed_time))
@@ -131,18 +144,21 @@ class CameraFrameReader(metaclass=abc.ABCMeta):
             return (None, 0.0, 0.0)
 
 
-
 # USBカメラ専用フレーム読み取りクラス
 class USBCameraFrameReader(CameraFrameReader):
 
-    def __init__(self, device_id:Union[int, None] = None, delay:Union[int, None] = None, deque_size:int = 1):
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None,
+                 deque_size: int = 1):
+
         super(USBCameraFrameReader, self).__init__(device_id, delay, deque_size)
 
         # USB(opencv VideoCapture)
-        self.capture:Any = None
+        self.capture: Any = None
 
     @CameraFrameReader.overrides(CameraFrameReader)
-    def _check_stream(self, device_id:Union[int, str]) -> bool:
+    def _check_stream(self, device_id: Union[int, str]) -> bool:
         cap = cv2.VideoCapture(device_id)
         if not cap.isOpened():
             return False
@@ -202,24 +218,28 @@ class IDSCameraFrameReader(CameraFrameReader):
     理由がわからない。サブプロセスによる画像取り込みはdelay=0[ms]でCPU使用率60%ぐらい。
     """
 
-    def __init__(self, device_id:Union[int, None] = None, delay:Union[int, None] = None, deque_size:int = 1):
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None,
+                 deque_size:int = 1):
+
         super(IDSCameraFrameReader, self).__init__(device_id, delay, deque_size)
 
         # IDS-UIカメラのパラメータ
-        self.handler_camera:Union[int, None] = None # 0: first available camera;  1-254: The camera with the specified camera ID
-        self.sensor_info:Union[str, None] = None
-        self.camera_info:Union[str, None] = None
-        self.pc_image_memory:Union[int, None] = None
-        self.memory_id:Union[int, None] = None
-        self.rect_aoi:Any = None # ROI
-        self.pitch:Union[int, None] = None
-        self.nbits_per_pixel:Union[int, None] = None  # 24: bits per pixel for color mode; take 8 bits per pixel for monochrome
-        self.channels:Union[int, None] = None       # 3: channels for color mode(RGB); take 1 channel for monochrome
-        self.ncolor_mode:Union[str, None] = None   # Y8/RGB16/RGB24/REG32
-        self.bytes_per_pixel:Union[int, None] = None
+        self.handler_camera: Union[int, None] = None   # 0: first available camera;  1-254: The camera with the specified camera ID
+        self.sensor_info: Union[str, None] = None
+        self.camera_info: Union[str, None] = None
+        self.pc_image_memory: Union[int, None] = None
+        self.memory_id: Union[int, None] = None
+        self.rect_aoi: Any = None # ROI
+        self.pitch: Union[int, None] = None
+        self.nbits_per_pixel: Union[int, None] = None  # 24: bits per pixel for color mode; take 8 bits per pixel for monochrome
+        self.channels: Union[int, None] = None         # 3: channels for color mode(RGB); take 1 channel for monochrome
+        self.ncolor_mode: Union[str, None] = None      # Y8/RGB16/RGB24/REG32
+        self.bytes_per_pixel: Union[int, None] = None
 
     @CameraFrameReader.overrides(CameraFrameReader)
-    def _check_stream(self, device_id:Union[int, str]) -> bool:
+    def _check_stream(self, device_id: Union[int, str]) -> bool:
         """
         IDSカメラデバイスの設定とチェック
         :param device_id:
@@ -466,31 +486,35 @@ class IDSCameraFrameReader(CameraFrameReader):
 # OMRON-Sentechカメラ専用フレーム読み取りクラス
 class OMRONCameraFrameReader(CameraFrameReader):
 
-    def __init__(self, device_id:Union[int, None]=None, delay:Union[int, None]=None, deque_size:int=1):
+    def __init__(self,
+                 device_id: Union[int, None] = None,
+                 delay: Union[int, None] = None,
+                 deque_size: int = 1):
+
         super(OMRONCameraFrameReader, self).__init__(device_id, delay, deque_size)
 
         """OMRON-Sentechカメラのパラメータ"""
         # Transport Layer
         # System
-        self.st_system:Union[st.PyStSystem, None] = None
-        self.st_system_info:Union[st.PyStSystemInfo, None] = None
+        self.st_system: Union[st.PyStSystem, None] = None
+        self.st_system_info: Union[st.PyStSystemInfo, None] = None
         # Interface
-        self.st_interface:Union[st.PyStInterface, None] = None
-        self.st_interface_info:Union[st.PyStInterfaceInfo, None] = None
+        self.st_interface: Union[st.PyStInterface, None] = None
+        self.st_interface_info: Union[st.PyStInterfaceInfo, None] = None
         # Device
-        self.st_device:Union[st.PyStDevice, None] = None
-        self.st_device_info:Union[st.PyStDeviceInfo, None] = None
+        self.st_device: Union[st.PyStDevice, None] = None
+        self.st_device_info: Union[st.PyStDeviceInfo, None] = None
         # DataStream
-        self.st_data_stream:Union[st.PyStDataStream, None] = None
-        self.st_data_stream_info:Union[st.PyDataStreamInfo, None] = None
+        self.st_data_stream: Union[st.PyStDataStream, None] = None
+        self.st_data_stream_info: Union[st.PyDataStreamInfo, None] = None
         # DataStreamBuffer
-        self.st_data_stream_buffer:Union[st.PyDataStreamBuffer, None] = None
-        self.st_data_stream_buffer_info:Union[st.PyDataStreamBufferInfo, None] = None
+        self.st_data_stream_buffer: Union[st.PyDataStreamBuffer, None] = None
+        self.st_data_stream_buffer_info: Union[st.PyDataStreamBufferInfo, None] = None
 
         # Port
-        self.st_port:Union[st.PyStPort, None] = None
-        self.st_port_info:Union[st.PyStPortInfo, None] = None
-        self.st_port_url_info:Union[st.PyStPortURLInfo, None] = None
+        self.st_port: Union[st.PyStPort, None] = None
+        self.st_port_info: Union[st.PyStPortInfo, None] = None
+        self.st_port_url_info: Union[st.PyStPortURLInfo, None] = None
 
 
 

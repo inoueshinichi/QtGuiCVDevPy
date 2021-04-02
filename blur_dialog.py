@@ -29,10 +29,28 @@ from PIL import Image
 import skimage
 from matplotlib import pyplot as plt
 import PySide2
-from PySide2 import (QtGui, QtCore)
-from PySide2.QtCore import (Signal, Slot, Qt, QEvent, QTimer, QPointF)
+from PySide2 import (
+    QtGui,
+    QtCore
+)
+from PySide2.QtCore import (
+    Signal,
+    Slot,
+    Qt,
+    QEvent,
+    QTimer,
+    QPointF
+)
 from PySide2.QtGui import QImage
-from PySide2.QtWidgets import (QApplication, QWidget, QMainWindow, QFileDialog, QDialog, QMessageBox, QLabel)
+from PySide2.QtWidgets import (
+    QApplication,
+    QWidget,
+    QMainWindow,
+    QFileDialog,
+    QDialog,
+    QMessageBox,
+    QLabel
+)
 
 # 自作
 cwd = os.getcwd()
@@ -48,7 +66,9 @@ from module.imgproc import blur
 
 class BlurDialog(QDialog):
 
-    def __init__(self, parent:QWidget=None):
+    def __init__(self,
+                 parent: QWidget = None):
+
         super(BlurDialog, self).__init__(parent)
 
         # 親
@@ -190,6 +210,3 @@ class BlurDialog(QDialog):
         else:
             """File Mode"""
             qt_def.help_process_file_mode(self, img_proc_func, process)
-
-
-

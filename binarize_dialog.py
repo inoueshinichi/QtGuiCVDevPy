@@ -15,7 +15,8 @@ from typing import (
     Union,
     Callable,
     Any,
-    NewType
+    NewType,
+    Generic
 )
 
 
@@ -59,16 +60,16 @@ sys.path.append(ui_dir)
 module_dir = "/".join([cwd, "module"])
 sys.path.append(module_dir)
 
-from ui.ui_BinarizeDialog import Ui_BinarizeDialog
 from image_window import ImageWindow
 from module.utils import new_serial_number_filename
 from module.qt_module.qt_def import *
 from module.imgproc.binarize import *
+from ui.ui_BinarizeDialog import Ui_BinarizeDialog
 
 
 class BinarizeDialog(QDialog):
 
-    def __init__(self, parent:QWidget=None):
+    def __init__(self, parent: QWidget =None):
         super(BinarizeDialog, self).__init__(parent)
 
         # 親
@@ -130,9 +131,9 @@ class BinarizeDialog(QDialog):
         process = "Simple Binarize"
         threshold = self.ui.sBox_Simple_Threshold.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = binarize(src, thresh=threshold)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""
@@ -172,9 +173,9 @@ class BinarizeDialog(QDialog):
         patch_size = self.ui.sBox_Adaptive_Patchsize.value()
         sub_thresh_bias = self.ui.sBox_Adaptive_SubThreshBias.value()
 
-        def img_proc_func(src: np.ndarray) -> np.ndarray:
+        def img_proc_func(src: np.ndarray) -> Union[np.ndarray, List[Any]]:
             dst = adaptive_binarize(src, patch_size=patch_size, sub_thresh_bias=sub_thresh_bias)
-            return dst
+            return dst, list()
 
         if self.main_win.ui.rBtn_View_Mode.isChecked():
             """View Mode"""

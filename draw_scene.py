@@ -66,10 +66,11 @@ from rect_graphics_item import RectGraphicsItem
 from ellipse_graphics_item import EllipseGraphicsItem
 from line_graphics_item import LineGraphicsItem
 
+
 # QGraphicsSceneの派生クラス
 class DrawScene(QGraphicsScene):
 
-    def __init__(self, parent:QObject=None):
+    def __init__(self, parent: QObject = None):
         super(DrawScene, self).__init__(parent)
 
         # 画像データ
@@ -114,7 +115,7 @@ class DrawScene(QGraphicsScene):
             'rect': QRectF(0, 0, 0, 0),
             'anchor': QPointF(0, 0),
             'klass': RectGraphicsItem,
-            'color': Qt.red
+            'color': Qt.magenta
         }
 
         # Line(直線)
@@ -140,7 +141,7 @@ class DrawScene(QGraphicsScene):
         }
 
     # override
-    def mouseMoveEvent(self, event:PySide2.QtWidgets.QGraphicsSceneMouseEvent):
+    def mouseMoveEvent(self, event: PySide2.QtWidgets.QGraphicsSceneMouseEvent):
         """
         マウス移動イベント
         :param event:
@@ -149,7 +150,7 @@ class DrawScene(QGraphicsScene):
         scene_pos = event.scenePos()
         self._set_dib_qImage_to_statusbar(scene_pos)
 
-        if self.is_mouse_downs['LB']:
+        if self.is_mouse_downs['RB']:
             # Ctrlが押されているか
             is_ctrl = True if event.modifiers() & Qt.ControlModifier else False
             # Shiftが押されているか
@@ -162,7 +163,6 @@ class DrawScene(QGraphicsScene):
                                is_mouse_move=True,
                                is_center_drag=is_ctrl,
                                is_square=is_shift)
-
             # line
             if self.figure_dict_line['is_draw']:
                 self._draw_line(scene_pos,
@@ -170,7 +170,6 @@ class DrawScene(QGraphicsScene):
                                 is_mouse_move=True,
                                 is_center_drag=is_ctrl,
                                 is_square=is_shift)
-
             # ellipse
             if self.figure_dict_ellipse['is_draw']:
                 self._draw_ellipse(scene_pos,
@@ -179,13 +178,11 @@ class DrawScene(QGraphicsScene):
                                    is_center_drag=is_ctrl,
                                    is_square=is_shift)
 
-
-        elif self.is_mouse_downs['RB']:
+        elif self.is_mouse_downs['LB']:
             # cross line
             self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
             # profile
             self._draw_profiles(scene_pos, show=self.is_draw_profile)
-
 
         elif self.is_mouse_downs['MB']:
             pass
@@ -199,7 +196,7 @@ class DrawScene(QGraphicsScene):
         super(DrawScene, self).mouseMoveEvent(event)
 
     # override
-    def mousePressEvent(self, event:PySide2.QtWidgets.QGraphicsSceneMouseEvent):
+    def mousePressEvent(self, event: PySide2.QtWidgets.QGraphicsSceneMouseEvent):
         """
         マウスプレスイベント
         :param event:
@@ -213,6 +210,13 @@ class DrawScene(QGraphicsScene):
 
         if event.button() == Qt.MouseButton().LeftButton:
             self.is_mouse_downs['LB'] = True
+            # cross line
+            self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
+            # profile
+            self._draw_profiles(scene_pos, show=self.is_draw_profile)
+
+        elif event.button() == Qt.MouseButton().RightButton:
+            self.is_mouse_downs['RB'] = True
             # Ctrlが押されているか
             is_ctrl = True if event.modifiers() & Qt.ControlModifier else False
             # Shiftが押されているか
@@ -225,7 +229,6 @@ class DrawScene(QGraphicsScene):
                                is_mouse_move=False,
                                is_center_drag=is_ctrl,
                                is_square=is_shift)
-
             # line
             if self.figure_dict_line['is_draw']:
                 self._draw_line(scene_pos,
@@ -233,7 +236,6 @@ class DrawScene(QGraphicsScene):
                                is_mouse_move=False,
                                is_center_drag=is_ctrl,
                                is_square=is_shift)
-
             # ellipse
             if self.figure_dict_ellipse['is_draw']:
                 self._draw_ellipse(scene_pos,
@@ -242,18 +244,8 @@ class DrawScene(QGraphicsScene):
                                    is_center_drag=is_ctrl,
                                    is_square=is_shift)
 
-
-        elif event.button() == Qt.MouseButton().RightButton:
-            self.is_mouse_downs['RB'] = True
-            # cross line
-            self._draw_mouse_cross_line(scene_pos, show=self.is_mouse_cross_line)
-
-            # profile
-            self._draw_profiles(scene_pos, show=self.is_draw_profile)
-
         elif event.button() == Qt.MouseButton().MiddleButton:
             self.is_mouse_downs['MB'] = True
-
         else:
             print("Pressed Unknown Mouse Button.")
 
@@ -263,7 +255,7 @@ class DrawScene(QGraphicsScene):
         super(DrawScene, self).mousePressEvent(event)
 
     # override
-    def mouseReleaseEvent(self, event:PySide2.QtWidgets.QGraphicsSceneMouseEvent):
+    def mouseReleaseEvent(self, event: PySide2.QtWidgets.QGraphicsSceneMouseEvent):
         """
         マウスリリースイベント
         :param event:
@@ -276,7 +268,10 @@ class DrawScene(QGraphicsScene):
         self._set_dib_qImage_to_statusbar(scene_pos)
 
         if event.button() == Qt.MouseButton().LeftButton:
-            self.is_mouse_downs['LB'] = False
+            self.is_mouse_downs["LB"] = False
+
+        elif event.button() == Qt.MouseButton().RightButton:
+            self.is_mouse_downs['RB'] = False
             # Ctrlが押されているか
             is_ctrl = True if event.modifiers() & Qt.ControlModifier else False
             # Shiftが押されているか
@@ -289,7 +284,6 @@ class DrawScene(QGraphicsScene):
                                is_mouse_move=False,
                                is_center_drag=is_ctrl,
                                is_square=is_shift)
-
             # line
             if self.figure_dict_line['is_draw']:
                 self._draw_line(scene_pos,
@@ -297,7 +291,6 @@ class DrawScene(QGraphicsScene):
                                is_mouse_move=False,
                                is_center_drag=is_ctrl,
                                is_square=is_shift)
-
             # ellipse
             if self.figure_dict_ellipse['is_draw']:
                 self._draw_ellipse(scene_pos,
@@ -305,9 +298,6 @@ class DrawScene(QGraphicsScene):
                                    is_mouse_move=False,
                                    is_center_drag=is_ctrl,
                                    is_square=is_shift)
-
-        elif event.button() == Qt.MouseButton().RightButton:
-            self.is_mouse_downs["RB"] = False
 
         elif event.button() == Qt.MouseButton().MiddleButton:
             self.is_mouse_downs["MB"] = False
@@ -328,11 +318,14 @@ class DrawScene(QGraphicsScene):
         """
         if event.button() == Qt.MouseButton().LeftButton:
             pass
+        elif event.button() == Qt.MouseButton().RightButton:
+            pass
+        elif event.button() == Qt.MouseButton().MiddleButton:
+            pass
 
         super(DrawScene, self).mouseDoubleClickEvent(event)
 
-
-    def set_mask(self, mask_qimage:QImage):
+    def set_mask(self, mask_qimage: QImage):
         """
         マスク画像をセット
         :param qimage: QImage Format_Grayscale8
@@ -468,7 +461,7 @@ class DrawScene(QGraphicsScene):
         """
         return self.source_dib_qimage
 
-    def set_qimage_on_screen(self, qimage:QImage, is_raw:bool=False) -> bool:
+    def set_qimage_on_screen(self, qimage: QImage, is_raw: bool = False) -> bool:
         """
         SceneへQImageとQPixmapを登録する
         :param qimage:
@@ -477,39 +470,42 @@ class DrawScene(QGraphicsScene):
         """
         if qimage.isNull():
             return False
+
+        # QImage
+        self.source_dib_qimage = qimage
+        if is_raw:
+            self.raw_dib_qimage = self.source_dib_qimage.copy()
+
+        # ディスプレイに表示するQImageはARGB32(0xffRRGGBB)フォーマットで統一
+        # format_rgb32_qimage = qimage.convertToFormat(QImage.Format_RGB32)
+
+        # QPixmap for image
+        self.off_screen_ddb_qpixmap = QPixmap.fromImage(self.source_dib_qimage)#(format_rgb32_qimage)
+
+        # QGraphicsPixmapの生成 or 更新 for image
+        if self.item_qpixmap not in self.items():
+            self.item_qpixmap = QGraphicsPixmapItem(self.off_screen_ddb_qpixmap)
+            self.addItem(self.item_qpixmap)
         else:
-            # QImage
-            self.source_dib_qimage = qimage
+            self.item_qpixmap.setPixmap(self.off_screen_ddb_qpixmap)
 
-            if is_raw:
-                self.raw_dib_qimage = self.source_dib_qimage.copy()
-
-            # ディスプレイに表示するQImageはARGB32(0xffRRGGBB)フォーマットで統一
-            # format_rgb32_qimage = qimage.convertToFormat(QImage.Format_RGB32)
-
-            # QPixmap for image
-            self.off_screen_ddb_qpixmap = QPixmap.fromImage(self.source_dib_qimage)#(format_rgb32_qimage)
-
-            # QGraphicsPixmapの生成or更新 for image
-            if self.item_qpixmap not in self.items():
-                self.item_qpixmap = QGraphicsPixmapItem(self.off_screen_ddb_qpixmap)
-                self.addItem(self.item_qpixmap)
-            else:
-                self.item_qpixmap.setPixmap(self.off_screen_ddb_qpixmap)
-
+        # Sceneの設定
         self.setSceneRect(self.off_screen_ddb_qpixmap.rect())
+
+        # Scene情報をImageWindowに表示
         scene_rect = self.sceneRect().toRect()
         x, y = scene_rect.x(), scene_rect.y()
         width, height = scene_rect.width(), scene_rect.height()
         self.parent().permanent_status.setText("SceneRect ({0:4d},{1:4d},{2:4d},{3:4d})".format(x, y, width, height))
 
+        # 画像情報をImageWindowに表示
         status = status_qimage(self.source_dib_qimage)
         self.parent().ui.lEdit_Image_Status.setText("{0}x{1} pixels; {2}-bit; {3}[bytes] {4}".format(
             status['width'], status['height'], status['bitPlaneCount'], status['dataSize'], status['format']))
 
         return True
 
-    def _set_dib_qImage_to_statusbar(self, scene_pos:QPointF):
+    def _set_dib_qImage_to_statusbar(self, scene_pos: QPointF):
         """
         ステータスバーにマウス位置の画像情報を表示
         :param scene_pos:
@@ -520,6 +516,7 @@ class DrawScene(QGraphicsScene):
                 item = self.itemAt(scene_pos, view.transform())
                 if item is not None:
 
+                    # @Note
                     # シーンの最下層のQGraphicsPixmapItemを取得
                     # QGraphicsPixmapItemの上位レイヤーのitemは最終的にQGraphicsPixmapItemを親とする
                     while item.parentItem() is not None:
@@ -622,6 +619,7 @@ class DrawScene(QGraphicsScene):
             if view.isActiveWindow():
                 item = self.itemAt(scene_pos, view.transform())
                 if item is not None:
+                    # @note
                     # シーンの最下層のQGraphicsPixmapItemを取得
                     # QGraphicsPixmapItemの上位レイヤーのitemは最終的にQGraphicsPixmapItemを親とする
                     while item.parentItem() is not None:
@@ -707,6 +705,7 @@ class DrawScene(QGraphicsScene):
             if view.isActiveWindow():
                 item = self.itemAt(scene_pos, view.transform())
                 if item is not None:
+                    # @note
                     # シーンの最下層のQGraphicsPixmapItemを取得
                     # QGraphicsPixmapItemの上位レイヤーのitemは最終的にQGraphicsPixmapItemを親とする
                     while item.parentItem() is not None:
@@ -777,7 +776,7 @@ class DrawScene(QGraphicsScene):
                                 else:
                                     print("self.item_x_profile_path['green'] was created !")
                                     self.item_x_profile_path['green'] = QGraphicsPathItem(self.item_qpixmap)
-                                    self.item_x_profile_path['green'].setPen(QPen(Qt.magenta, 1))
+                                    self.item_x_profile_path['green'].setPen(QPen(Qt.red, 1)) # 赤, 線幅1
                                     self.item_x_profile_path['green'].setBrush(QBrush(Qt.NoBrush))
                                     self.item_x_profile_path['green'].setPath(self.x_profile_path['green'])
 
@@ -788,7 +787,7 @@ class DrawScene(QGraphicsScene):
                                 else:
                                     print("self.item_y_profile_path['green'] is craeted !")
                                     self.item_y_profile_path['green'] = QGraphicsPathItem(self.item_qpixmap)
-                                    self.item_y_profile_path['green'].setPen(QPen(Qt.cyan, 1))
+                                    self.item_y_profile_path['green'].setPen(QPen(Qt.blue, 1)) # 青, 線幅1
                                     self.item_y_profile_path['green'].setBrush(QBrush(Qt.NoBrush))
                             else:
                                 """Color(RGB)"""
@@ -802,6 +801,7 @@ class DrawScene(QGraphicsScene):
                                     next_pixel = self.source_dib_qimage.pixelColor(x + 1, profile_y)
                                     x_next_red, x_next_green, x_next_blue = next_pixel.red(), next_pixel.green(), next_pixel.blue()
                                     x_lum_pairs = [(x_red, x_next_red), (x_green, x_next_green), (x_blue, x_next_blue)]
+
                                     for key, lum_pair in zip(self.x_profile_path.keys(), x_lum_pairs):
                                         self.x_profile_path[key].moveTo(x, viewport_height - lum_pair[0] - view_anchor.y())
                                         self.x_profile_path[key].lineTo(x + 1, viewport_height - lum_pair[1] - view_anchor.y())
@@ -845,23 +845,28 @@ class DrawScene(QGraphicsScene):
                                         self.item_x_profile_path[key].setPath(self.y_profile_path[key])
 
 
-    def __draw_figure(self, figure_dict:Dict[str, Any], scene_pos:QPointF,
-                      is_mouse_btn_down:bool, is_mouse_move:bool, is_center_drag:bool, is_square:bool):
+    def __draw_figure(self,
+                      figure_dict: Dict[str, Any],
+                      scene_pos: QPointF,
+                      is_mouse_btn_down: bool,
+                      is_mouse_move: bool,
+                      is_center_drag: bool,
+                      is_square: bool):
         """
         図形の描画用テンプレート
-        :param figure_dict:
-        :param scene_pos:
-        :param is_mouse_btn_down:
-        :param is_mouse_move:
-        :param is_show:
-        :param is_center_drag:
-        :param is_square:
+        :param figure_dict: 図形: 矩形, 直線, 楕円
+        :param scene_pos: Scene空間の座標
+        :param is_mouse_btn_down: マウスボタンが押されいているか
+        :param is_mouse_move: マウスドラックしているか
+        :param is_center_drag: 図形中心に描画するか
+        :param is_square: アスペクト比 1:1で描画するか
         :return:
         """
         for view in self.views():
             if view.isActiveWindow():
                 item = self.itemAt(scene_pos, view.transform())
                 if item is not None:
+                    # @note
                     # シーンの最下層のQGraphicsPixmapItemを取得
                     # QGraphicsPixmapItemの上位レイヤーのitemは最終的にQGraphicsPixmapItemを親とする
                     while item.parentItem() is not None:
@@ -974,7 +979,6 @@ class DrawScene(QGraphicsScene):
                                             del figure_dict['item'][figure_key]
                                             print(f"MouseRelease:{str(figure_dict['klass'])} key: {figure_key} was released.")
 
-
                                 elif isinstance(figure_dict['item'][figure_key], LineGraphicsItem):
                                     if width != 0 and height != 0:
                                         figure_dict['item'][figure_key].set_rect(figure_dict['rect'], local_item_pos)  # 描画
@@ -989,12 +993,7 @@ class DrawScene(QGraphicsScene):
                                             del figure_dict['item'][figure_key]
                                             print(f"MouseRelease:{str(figure_dict['klass'])} key: {figure_key} was released.")
 
-
-
-
-
-
-    def toggle_roi(self, is_show:bool):
+    def toggle_roi(self, is_show: bool):
         """
         ROIの表示切り替え
         :param is_show:
@@ -1011,19 +1010,24 @@ class DrawScene(QGraphicsScene):
                 self.figure_dict_roi['item'].clear()
                 self.update()
 
-    def _draw_roi(self, scene_pos:QPointF, is_mouse_btn_down:bool, is_mouse_move:bool, is_center_drag:bool, is_square:bool):
+    def _draw_roi(self,
+        scene_pos: QPointF,
+        is_mouse_btn_down: bool,
+        is_mouse_move: bool,
+        is_center_drag: bool,
+        is_square: bool):
         """
         ROIの描画
         :param scene_pos:
         :param is_mouse_btn_down:
         :param is_mouse_move:
-        :param is_show:
         :param is_square:
         :return:
         """
-        self.__draw_figure(self.figure_dict_roi, scene_pos, is_mouse_btn_down, is_mouse_move, is_center_drag, is_square)
+        self.__draw_figure(self.figure_dict_roi, scene_pos, is_mouse_btn_down,
+                           is_mouse_move, is_center_drag, is_square)
 
-    def toggle_line(self, is_show:bool):
+    def toggle_line(self, is_show: bool):
         """
         直線の表示切り替え
         :param is_show:
@@ -1033,6 +1037,7 @@ class DrawScene(QGraphicsScene):
             self.figure_dict_line['is_draw'] = True
         else:
             self.figure_dict_line['is_draw'] = False
+
             if self.figure_dict_line['item']:
                 for key in self.figure_dict_line['item'].keys():
                     if self.figure_dict_line['item'][key] in self.items():
@@ -1040,20 +1045,25 @@ class DrawScene(QGraphicsScene):
                 self.figure_dict_line['item'].clear()
                 self.update()
 
-    def _draw_line(self, scene_pos:QPointF, is_mouse_btn_down:bool, is_mouse_move:bool, is_center_drag:bool, is_square:bool):
+    def _draw_line(self,
+                   scene_pos: QPointF,
+                   is_mouse_btn_down: bool,
+                   is_mouse_move: bool,
+                   is_center_drag: bool,
+                   is_square: bool):
         """
         直線の描画
         :param scene_pos:
         :param is_mouse_btn_down:
         :param is_mouse_move:
-        :param show:
-        :param center_drag:
-        :param square:
+        :param is_center_drag:
+        :param is_square:
         :return:
         """
-        self.__draw_figure(self.figure_dict_line, scene_pos, is_mouse_btn_down, is_mouse_move, is_center_drag, is_square)
+        self.__draw_figure(self.figure_dict_line, scene_pos, is_mouse_btn_down,
+                           is_mouse_move, is_center_drag, is_square)
 
-    def toggle_ellipse(self, is_show:bool):
+    def toggle_ellipse(self, is_show: bool):
         """
         楕円の表示切り替え
         :param is_show:
@@ -1070,23 +1080,28 @@ class DrawScene(QGraphicsScene):
                 self.figure_dict_ellipse['item'].clear()
                 self.update()
 
-    def _draw_ellipse(self, scene_pos:QPointF, is_mouse_btn_down:bool, is_mouse_move:bool, is_center_drag:bool, is_square:bool):
+    def _draw_ellipse(self,
+                      scene_pos: QPointF,
+                      is_mouse_btn_down: bool,
+                      is_mouse_move: bool,
+                      is_center_drag: bool,
+                      is_square: bool):
         """
         楕円領域の描画
         :param scene_pos:
         :param is_mouse_btn_down:
         :param is_mouse_move:
-        :param is_show:
         :param is_center_drag:
         :param is_square:
         :return:
         """
-        self.__draw_figure(self.figure_dict_ellipse, scene_pos, is_mouse_btn_down, is_mouse_move, is_center_drag, is_square)
+        self.__draw_figure(self.figure_dict_ellipse, scene_pos, is_mouse_btn_down,
+                           is_mouse_move, is_center_drag, is_square)
 
-    def toggle_mask(self, show:bool) -> bool:
+    def toggle_mask(self, is_show: bool) -> bool:
         """
         マスク画像の表示切り替え
-        :param show:
+        :param is_show:
         :return:
         """
         # self.mask_qimage.load("data/test01_binary.bmp")
@@ -1096,12 +1111,12 @@ class DrawScene(QGraphicsScene):
         # mask_array = retrieve_mask_ndarray(self.mask_qimage)
 
         # マスキング
-        if show:
+        if is_show:
             if not self.mask_qimage.isNull():
                 # QPixmap for mask
                 self.mask_qpixmap = QPixmap.fromImage(self.mask_qimage)
 
-                # QGraphicsPixmapの生成or更新 for mask
+                # QGraphicsPixmapの生成 or 更新 for mask
                 self.item_mask_qpixmap = QGraphicsPixmapItem(self.item_qpixmap) # 親QGraphicsItemを指定
                 self.item_mask_qpixmap.setPixmap(self.mask_qpixmap)
                 self.addItem(self.item_mask_qpixmap)
@@ -1115,12 +1130,15 @@ class DrawScene(QGraphicsScene):
         self.update()
         return True
 
-    def add_item_text(self, text:str, key:str, pos:QPointF, color:QColor=Qt.magenta, point_size:int=10):
+    def add_item_text(self, text: str, key: str, pos: QPointF,
+                      color: QColor = Qt.magenta, point_size: int = 10):
         """
         指定位置にテキストを描画
+        :param text:
         :param key:
         :param pos:
-        :param text:
+        :param color
+        :param point_size
         :return:
         """
         if key in self.item_texts.keys():
@@ -1133,7 +1151,7 @@ class DrawScene(QGraphicsScene):
             self.item_texts[key].setPos(pos)
             self.item_texts[key].setPlainText(text)
 
-    def remove_item_text(self, key:str):
+    def remove_item_text(self, key: str):
         """
         指定したテキストを破棄
         :param key:

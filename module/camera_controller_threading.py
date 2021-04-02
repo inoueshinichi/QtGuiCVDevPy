@@ -5,7 +5,17 @@
 # 標準
 import os
 import sys
-from typing import (List, Dict, Tuple, Union, Callable, Any, NoReturn, NewType, Type)
+from typing import (
+    List,
+    Dict,
+    Tuple,
+    Union,
+    Callable,
+    Any,
+    NoReturn,
+    NewType,
+    Type
+)
 import datetime as dt
 import time
 import threading

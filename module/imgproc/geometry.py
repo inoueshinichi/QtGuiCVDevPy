@@ -142,8 +142,12 @@ def rotate(src: np.ndarray, deg: float = 0.0, center: Tuple[int, int] = (0, 0)) 
     return dst
 
 
-def affine2d(src:np.ndarray, deg:float = 0.0, tran:Tuple[int,int] = (0, 0),
-             scale:float = 1.0, center:Tuple[int,int] = (0, 0)) -> np.ndarray:
+def affine2d(src: np.ndarray,
+             deg: float = 0.0,
+             tran: Tuple[int, int] = (0, 0),
+             scale: Tuple[float, float] = (0, 0),
+             center: Tuple[int,int] = (0, 0))\
+        -> np.ndarray:
     """
     アフィン変換
     :param src:
@@ -155,8 +159,8 @@ def affine2d(src:np.ndarray, deg:float = 0.0, tran:Tuple[int,int] = (0, 0),
     """
     # 指定位置での回転と並進をする行列を作成
     rad = math.radians(deg)
-    r11 = scale * math.cos(rad)
-    r12 = scale * math.sin(rad)
+    r11 = scale[0] * math.cos(rad)
+    r12 = scale[1] * math.sin(rad)
     r13 = (1 - r11) * center[0] - r12 * center[1] + tran[0]
     r21 = -r12
     r22 = r11
