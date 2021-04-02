@@ -73,11 +73,12 @@ sys.path.append(module_dir)
 
 from ui.ui_MainWindow import Ui_MainWindow
 from image_window import ImageWindow
+from affine_dialog import AffineDialog
 from edit_border_dialog import EditBorderDialog
 from blur_dialog import BlurDialog
 from shading_dialog import ShadingDialog
 from unsharp_masking_dialog import UnsharpMaskingDialog
-# from mapping_dialog import MappingDialog
+from mapping_dialog import MappingDialog
 from edge_detector_dialog import EdgeDetectorDialog
 from binarize_dialog import BinarizeDialog
 from morphology_dialog import MorphologyDialog
@@ -108,19 +109,19 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(parent)
 
         # UI
-        self.ui:Any = Ui_MainWindow()
+        self.ui: Any = Ui_MainWindow()
         self.ui.setupUi(self)
 
         # Image Window
-        self.img_wins:List[Union[ImageWindow, None]] = []
-        self.last_active_img_win:Union[ImageWindow, None] = None
+        self.img_wins: List[Union[ImageWindow, None]] = []
+        self.last_active_img_win: Union[ImageWindow, None] = None
         self.is_last_active = False
 
         # Copy/Paste
-        self.qimage_copy:Union[QImage, None] = None
+        self.qimage_copy: Union[QImage, None] = None
 
         # File Mode
-        self.current_dir:str = os.getcwd()
+        self.current_dir: str = os.getcwd()
 
         # Matplotlib figure
         self.mpl_figures = {}
@@ -306,9 +307,8 @@ class MainWindow(QMainWindow):
         self.ui.actionHorizontal_Flip.triggered.connect(self._act_menubar_image_transform)
         self.ui.actionRotate_90_Degree_Left.triggered.connect(self._act_menubar_image_transform)
         self.ui.actionRotate_90_Degree_Right.triggered.connect(self._act_menubar_image_transform)
-        self.ui.actionRotate.triggered.connect(self._act_menubar_image_transform)
-        self.ui.actionTranslate.triggered.connect(self._act_menubar_image_transform)
-        self.ui.actionBin.triggered.connect(self._act_menubar_image_transform)
+        self.ui.actionAffine.triggered.connect(self._act_menubar_image_transform)
+
 
         # Zoom
         # self.ui.actionZoomIn.triggered.connect(self._act_menubar_zoom)
@@ -1775,16 +1775,12 @@ class MainWindow(QMainWindow):
 
                     img_proc_func = rot_90deg_right
 
-                elif sender == self.ui.actionRotate:
-                    process = "Rotate"
-                    pass
-
-                elif sender == self.ui.actionTranslate:
-                    process = "Translate"
-                    pass
-                elif sender == self.ui.actionBin:
-                    process = "Bin"
-                    pass
+                elif sender == self.ui.actionAffine:
+                    process = "Affine"
+                    affine_dialog = AffineDialog(self, cx=qimage.width()/2, cy=qimage.height()/2)
+                    affine_dialog.activateWindow()
+                    affine_dialog.show()
+                    return
 
                 start = time.perf_counter()
                 self._help_apply_qimage(img_proc_func)
